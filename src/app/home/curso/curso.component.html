@@ -1,0 +1,70 @@
+<div class="container animated fast fadeIn">
+  <div *ngIf="loading">
+    <div class="row text-center animated fadeIn">
+      <div class="col ">
+        <i class="fas fa-sync fa-spin fa-5x"></i>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col">
+        <h1>Cargando componentes ... </h1>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!loading" class="row" style="margin-top:20px;">
+    <div class="col col-3">
+    <img [src]="curso.image" class="imagenesCurso img-fluid">
+      <hr>
+      <h5>Categoria
+        <br>
+        <small>
+          {{curso.categories}}
+        </small>
+      </h5>
+      <hr>
+      <h6>CLAVE
+        <br>
+        <small>
+          {{curso.code}}
+        </small>
+      </h6>
+    </div>
+    <!-- -->
+    <div class="col col-9">
+      <h1 class="text-center">
+        {{curso.title}}
+      </h1>
+      <hr>
+      <ngb-tabset>
+        <ngb-tab>
+          <ng-template ngbTabTitle><h6>Descripción del curso</h6></ng-template>
+          <ng-template ngbTabContent>
+            <div [innerHTML]="curso.description">
+
+            </div>
+            <!--h5 class="text-justify" style="margin-top:25px;">
+              {{crs.description}}
+            </h5-->
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle><h6>Temario</h6></ng-template>
+            <ng-template ngbTabContent>
+              <div *ngFor="let item of block" class="card">
+                <div *ngIf="item.number==0" class="card-header">
+                  <h5>
+                    {{item.section}}.{{item.title}} <span *ngIf="item.beginDate" class="text-right text-secondary"> | <i class="far fa-calendar-alt"></i> Fecha de inicio: {{item.beginDate | date}}</span> <span *ngIf="item.endDate" class="text-right text-secondary"> | <i class="far fa-calendar-alt"></i> Fecha de término: {{item.endDate | date}}</span><span *ngIf="item.duration" class="text-right text-secondary"> | <i class="far fa-clock"></i> Duración:{{item.duration}}</span>
+                  </h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li *ngIf="item.number!=0" class="list-group-item">
+                    {{item.section}}.{{item.number}} {{item.title}}
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+  </div>
+</div>

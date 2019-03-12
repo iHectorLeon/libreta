@@ -1,10 +1,72 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ConnectionService } from 'ng-connection-service';
+import { NgbModule, NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from './shared/sharedservices/user.service';
+import { Router } from '@angular/router';
+import { Meta } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  providers:[UserService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'libreta';
+  status='ONLINE'
+  isConnect=true;
+  identiti:any;
+  token:any;
+
+
+  constructor(private connection:ConnectionService, private userservice:UserService, private route:Router){
+
+  }
+
+  ngOnInit(){
+    this.identiti = this.userservice.getIdentiti();
+    this.token = this.userservice.getToken();
+    this.checkconnection();
+    //this.checkSesion();
+  }
+
+  /*
+  función de cambios en el componente
+  */
+  ngDoCheck(){
+    this.identiti = this.userservice.getIdentiti();
+    this.token = this.userservice.getToken();
+    this.checkconnection();
+    this.checkSesion();
+  }
+
+  checkSesion(){
+    /*
+    this.userservice.getRoles().subscribe(data=>{
+      console.log(data);
+    },error=>{
+      if(error._body == '{"status":401,"message":"Error 204: Token expired"}'){
+        this.route.navigate(['/error','sesionexpired']);
+      }else{
+        this.route.navigate(['/error',error]);
+      }
+    });
+    */
+  }
+
+  checkconnection(){
+    this.connection.monitor().subscribe(connect=>{
+      this.isConnect = connect;
+      if(!this.isConnect){
+        this.route.navigate(['/error','Offline']);
+      }else{
+        if(this.identiti!=null){
+          this.route.navigate(['/consoleuser']);
+        }else{
+          this.route.navigate(['/home']);
+        }
+      }
+    })
+  }
 }
