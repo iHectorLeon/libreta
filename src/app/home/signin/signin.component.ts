@@ -261,7 +261,7 @@ export class SigninComponent implements OnInit, DoCheck {
   /*
   metodo para validar si el usuario esta o no dentro de la base de datos
   */
-  validateUser(useremail):boolean{
+  validateUser( useremail: any): boolean {
     this.uservalite = this.emailRegex.test(useremail);
     return this.uservalite;
   }
