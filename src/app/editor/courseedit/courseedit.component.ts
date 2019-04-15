@@ -1,12 +1,22 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Block,
+  BlockCode,
+  BlockMedia,
+  BlockStatus,
+  BlockTitle,
+  BlockVisible,
+  BlockWb,
+  BlockWq,
+  BlockWt
+  } from './../../models/temp/block';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NgbModule, NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-
+import { ModifyBlock } from './../../models/course/modifyblock';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceisorgService } from './../../shared/sharedservices/serviceisorg.service';
 import { UserService } from './../../shared/sharedservices/user.service';
 
-import { Block, BlockCode, BlockVisible, BlockStatus, BlockTitle, BlockMedia, BlockWb, BlockWq, BlockWt} from './../../models/temp/block';
-import { ModifyBlock } from './../../models/course/modifyblock';
+
 
 @Component({
   selector: 'app-courseedit',
@@ -89,7 +99,7 @@ export class CourseeditComponent implements OnInit {
       }
     });
   }
-  //5a8eee47f28b63001bd571fa
+
   ngOnInit() {
     this.identiti = this.user.getIdentiti();
     this.getBlock();

@@ -1,9 +1,14 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
 import { ManagerserviceService } from './../managerservice.service';
-import { UserService } from './../../shared/sharedservices/user.service';
-import { NgbModule, NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import {
+  ModalDismissReasons,
+  NgbModal,
+  NgbModalRef,
+  NgbModule
+  } from '@ng-bootstrap/ng-bootstrap';
 import { payment } from './../manager.models';
+import { UserService } from './../../shared/sharedservices/user.service';
 
 declare var $:any;
 
@@ -186,7 +191,6 @@ export class ViewrequestComponent implements OnInit {
       );
     }
   }
-
 
   /*
   metodo para enviar el comprobante de pago

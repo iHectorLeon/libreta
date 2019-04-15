@@ -1,12 +1,27 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModule, NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-
-import { UserService } from './../../shared/sharedservices/user.service';
+import {
+  Answer,
+  Option,
+  Question,
+  Questionnarie
+  } from './../../models/temp/questionnarie';
+import { Component, OnInit } from '@angular/core';
+import {
+  ContentCourse,
+  Coursecode,
+  NewBlock,
+  Questionn
+  } from './../../models/course/newBlock';
+import {
+  ModalDismissReasons,
+  NgbModal,
+  NgbModalRef,
+  NgbModule
+  } from '@ng-bootstrap/ng-bootstrap';
 import { ServiceisorgService } from './../../shared/sharedservices/serviceisorg.service';
+import { UserService } from './../../shared/sharedservices/user.service';
 
-import { NewBlock, Coursecode, ContentCourse, Questionn } from './../../models/course/newBlock';
-import { Questionnarie, Question, Answer, Option } from './../../models/temp/questionnarie';
+
 
 @Component({
   selector: 'app-newblock',

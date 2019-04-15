@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { GLOBAL } from './global';
 import { environment } from './../../../environments/environment';
+import { GLOBAL } from './global';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { UserService } from './user.service';
-import 'rxjs/add/operator/map' ;
+import 'rxjs/add/operator/map';
+ ;
 
 @Injectable()
 export class CourseService {

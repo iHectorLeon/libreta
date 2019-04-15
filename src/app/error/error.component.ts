@@ -1,5 +1,5 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Inject } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 

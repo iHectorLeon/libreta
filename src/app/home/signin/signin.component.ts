@@ -1,18 +1,18 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
-
-import { SigninService } from './signin.service';
-import { HomeService } from './../homeservices/home.service';
-
-import { Userlms } from './../../models/userlms/userlms';
-import { Login} from './../../shared/login/login';
-import { UserTemp } from './../../models/temp/usertemp';
-import { States } from './../../models/temp/states';
 import { Areas } from './../../models/temp/areas';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { HomeService } from './../homeservices/home.service';
+import { Login } from './../../shared/login/login';
 import { Person } from './../../models/person/person';
+import { Router } from '@angular/router';
+import { SigninService } from './signin.service';
+import { States } from './../../models/temp/states';
 import { Student } from './../../models/student/student';
 import { StudentExternal } from './../../models/student/studentExternal';
+import { Userlms } from './../../models/userlms/userlms';
+import { UserTemp } from './../../models/temp/usertemp';
+
+
 
 @Component({
   selector: 'app-signin',
@@ -225,13 +225,14 @@ export class SigninComponent implements OnInit, DoCheck {
   */
   public datosOrgs():string{
     this.messa_err_org = null;
-    if(this.usertype=='internal'){
-      if(this.st.state.length===0 || this.st.state === null || this.usertemp.orgUnit.length===0 || this.usertemp.orgUnit === null || this.ar.area.length===0 || this.student.career.length===0 || this.student.term.length===0){
-        this.messa_err_org="Selecciona una opcion de cada lista"
-        return "1"
-      }else{
-        this.messa_err_org=""
-        return "2"
+    if (this.usertype=='internal') {
+// tslint:disable-next-line: max-line-length
+      if (this.st.state.length === 0 || this.st.state === null || this.usertemp.orgUnit.length===0 || this.usertemp.orgUnit === null || this.ar.area.length===0 || this.student.career.length===0 || this.student.term.length===0) {
+        this.messa_err_org ='Selecciona una opcion de cada lista';
+        return '1';
+      } else {
+        this.messa_err_org ='';
+        return '2';
       }
     }else if(this.usertype=='external'){
       if(this.st.state == null || this.usertemp.orgUnit == null || this.studentE.external.length== null){

@@ -1,7 +1,7 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from './../../shared/sharedservices/user.service';
 import { ServiceisorgService } from './../../shared/sharedservices/serviceisorg.service';
+import { UserService } from './../../shared/sharedservices/user.service';
 
 
 @Component({
@@ -10,9 +10,9 @@ import { ServiceisorgService } from './../../shared/sharedservices/serviceisorg.
   providers:[UserService, ServiceisorgService]
 })
 export class EditcoursesComponent implements OnInit {
-  loading:boolean;
-  identiti;
-  public cursoslist:any[]=[];
+  loading: boolean;
+  identiti: any;
+  public cursoslist: any[] = [];
 
   constructor(public serviceorg:ServiceisorgService, private _router:Router, private _activeRouter:ActivatedRoute, private user:UserService) {
     this.identiti = this.user.getIdentiti();

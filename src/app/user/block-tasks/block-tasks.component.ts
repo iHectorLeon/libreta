@@ -1,11 +1,11 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { NgbModule, NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-
+import { Component, Input, OnInit } from '@angular/core';
 import { CourseService } from './../../shared/sharedservices/course.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Task } from './../../models/temp/task';
+import { TaskEntry } from './../../models/course/task';
 import { UserService } from './../../shared/sharedservices/user.service';
 
-import { Task } from './../../models/temp/task'
-import { TaskEntry } from './../../models/course/task';
+
 
 declare var $:any;
 
@@ -16,9 +16,9 @@ declare var $:any;
 })
 export class BlockTasksComponent implements OnInit {
 
-  @Input() block:any;
+  @Input() block: any;
 
-  token:any;
+  token: any;
 
   task:TaskEntry;
   taskStudent:Task[]=[];
@@ -35,7 +35,6 @@ export class BlockTasksComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   /*

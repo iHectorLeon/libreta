@@ -1,11 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
-import { personmuir,studentmuir,usermuir, userexternalmuir, studentexternalmuir, corporate} from './../manager.models';
-
-import { ManagerserviceService } from './../managerservice.service';
-import { UserService } from './../../shared/sharedservices/user.service';
 import * as XLSX from 'xlsx';
-import { NgbModule, NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import {
+  corporate,
+  personmuir,
+  studentexternalmuir,
+  studentmuir,
+  userexternalmuir,
+  usermuir
+  } from './../manager.models';
+import { ManagerserviceService } from './../managerservice.service';
+import {
+  ModalDismissReasons,
+  NgbModal,
+  NgbModalRef,
+  NgbModule
+  } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from './../../shared/sharedservices/user.service';
+
 
 
 @Component({

@@ -1,8 +1,8 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { HomeService } from './../homeservices/home.service';
 import { CourseshopComponent } from '../courseshop/courseshop.component';
+import { HomeService } from './../homeservices/home.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-curso',

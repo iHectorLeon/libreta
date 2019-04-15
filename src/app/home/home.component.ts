@@ -1,11 +1,11 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { FormControl } from '@angular/forms';
+import { HomeService } from './homeservices/home.service';
+import { Meta } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
-import { FormControl } from '@angular/forms';
-import { environment } from '../../environments/environment';
 
-import { HomeService } from './homeservices/home.service';
 
 @Component({
   selector: 'app-home',

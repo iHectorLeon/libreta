@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { concatMap } from 'rxjs/operators';
 import { environment } from './../../environments/environment';
+import { from } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from './../shared/sharedservices/user.service';
-import { from } from 'rxjs';
-import { concatMap } from 'rxjs/operators';
 
 
 @Injectable()

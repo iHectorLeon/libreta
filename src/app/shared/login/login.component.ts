@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
-
-import { UserModule } from './../../user/user.module';
 import { Login } from './login';
+import { Router } from '@angular/router';
 import { UserService } from './../sharedservices/user.service';
 
 @Component({

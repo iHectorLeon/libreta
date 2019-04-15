@@ -1,8 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbModule, NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from './../../../shared/sharedservices/user.service';
+import { Component, Input, OnInit } from '@angular/core';
+import {
+  fiscaladdress,
+  fiscalemails,
+  fiscalfacdates,
+  fiscalfacmodel,
+  fiscalupdate,
+  fiscaluser,
+  fiscalusercorp,
+  fiscalusernew,
+  fiscalusernewcorp,
+  fiscaluserupdates,
+  roostermodels
+  } from './../../manager.models';
 import { ManagerserviceService } from './../../managerservice.service';
-import { fiscaluser, fiscalusernew, fiscaladdress, fiscalupdate, fiscaluserupdates, fiscalusercorp,fiscalfacdates, fiscalfacmodel, fiscalemails, fiscalusernewcorp, roostermodels} from './../../manager.models';
+import {
+  ModalDismissReasons,
+  NgbModal,
+  NgbModalRef,
+  NgbModule
+  } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from './../../../shared/sharedservices/user.service';
 
 @Component({
   selector: 'app-checkfac',

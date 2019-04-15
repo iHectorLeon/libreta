@@ -1,27 +1,37 @@
-import { Component, OnInit, DoCheck, ViewChild} from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { NgbModule, NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { DatePipe, DecimalPipe } from '@angular/common';
-import { CalendarComponent } from 'ng-fullcalendar';
-import { Options } from 'fullcalendar';
-
-import { CourseService } from './../../shared/sharedservices/course.service';
-import { UserService } from './../../shared/sharedservices/user.service';
-import { ServiceisorgService } from './../../shared/sharedservices/serviceisorg.service';
-
-import { Doubt } from './../../models/temp/doubt';
-import { Comment } from './../../models/course/comment';
-import { Discussion } from './../../models/course/discussion';
-import { Reply } from './../../models/course/reply';
-import { Notification } from './../models/notification';
-import { Follows, FollowId } from './../models/follow';
-import { constancias } from './../models/docsconalep';
-import { GeneratedocsService } from './generatedocs.service';
-import { Objects } from './../models/Objects';
-
-import * as jsPDF from 'jspdf';
 import * as $ from 'jquery';
+import * as jsPDF from 'jspdf';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CalendarComponent } from 'ng-fullcalendar';
+import { Comment } from './../../models/course/comment';
+import {
+  Component,
+  DoCheck,
+  OnInit,
+  ViewChild
+  } from '@angular/core';
+import { constancias } from './../models/docsconalep';
+import { CourseService } from './../../shared/sharedservices/course.service';
+import { DatePipe, DecimalPipe } from '@angular/common';
+import { Discussion } from './../../models/course/discussion';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Doubt } from './../../models/temp/doubt';
+import { FollowId, Follows } from './../models/follow';
+import { GeneratedocsService } from './generatedocs.service';
+import {
+  ModalDismissReasons,
+  NgbModal,
+  NgbModalRef,
+  NgbModule
+  } from '@ng-bootstrap/ng-bootstrap';
+import { Notification } from './../models/notification';
+import { Objects } from './../models/Objects';
+import { Options } from 'fullcalendar';
+import { Reply } from './../../models/course/reply';
+import { ServiceisorgService } from './../../shared/sharedservices/serviceisorg.service';
+import { UserService } from './../../shared/sharedservices/user.service';
+
+
+
 //import { IMGCONSTCONA } from './../../models/temp/imgconstancias';
 
 @Component({

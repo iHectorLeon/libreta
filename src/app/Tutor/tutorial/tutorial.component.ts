@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceisorgService } from './../../shared/sharedservices/serviceisorg.service';
-import { Router } from '@angular/router';
 import { CourseModel } from './../models/course';
+import { Router } from '@angular/router';
+import { ServiceisorgService } from './../../shared/sharedservices/serviceisorg.service';
 
 @Component({
   selector: 'app-tutorial',
@@ -27,7 +27,6 @@ export class TutorialComponent implements OnInit {
     this.loading = true;
     this.courseTitle = [];
     this.serviceorg.mylistgroup().subscribe(data=>{
-      console.log(data);
       this.mygrouplist = data.message;
       for(let id of this.mygrouplist){
         this.filterCourses(id.courseTitle);

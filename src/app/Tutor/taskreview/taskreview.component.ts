@@ -4,15 +4,9 @@ import { Comment } from './../../models/course/comment';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CourseService } from './../../shared/sharedservices/course.service';
 import { DatePipe } from '@angular/common';
-import { Discussion } from './../../models/course/discussion';
 import { Doubt } from './../../models/temp/doubt';
 import { FollowId, Follows } from './../../user/models/follow';
-import {
-  ModalDismissReasons,
-  NgbModal,
-  NgbModalRef,
-  NgbModule
-  } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Notification } from './../../user/models/notification';
 import { Objects } from './../../user/models/Objects';
 import { Options } from 'fullcalendar';

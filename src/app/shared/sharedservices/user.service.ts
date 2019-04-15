@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { GLOBAL } from './global';
-import { Roles } from './../../models/userlms/roles';
-import 'rxjs/add/operator/map' ;
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Roles } from './../../models/userlms/roles';
+import 'rxjs/add/operator/map';
+ ;
 
 //permitimos con este decorador inyectar a otras dependencias
 @Injectable()
