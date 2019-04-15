@@ -15,18 +15,18 @@ export class CourseshopComponent implements OnInit {
 
   }
 
-  public setShopCourses( courseid: any, members: number){
+  public setShopCourses( courseid: any, members: number) {
     console.log( this.courseShop );
-    if( this.courseShop.length > 0){
-      if( this.courseShop.find(idcs => idcs.curso == courseid) ){
-        this.messageUser = "Ya has agregado este curso a la lista"
-      }else{
+    if ( this.courseShop.length > 0 ) {
+      if ( this.courseShop.find(idcs => idcs.curso === courseid) ) {
+        this.messageUser = 'Ya has agregado este curso a la lista';
+      } else {
         this.courseShop.push({
           curso: courseid,
           member: members
         });
       }
-    }else{
+    } else {
       this.courseShop.push({
         curso: courseid,
         member: members

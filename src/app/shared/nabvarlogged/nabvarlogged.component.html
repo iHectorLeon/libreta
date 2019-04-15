@@ -35,11 +35,6 @@
     </ul>
     <hr>
     <form class="form-inline my-2 my-lg-0">
-      <!--a href="" class="nav-link text-success"><i class="fas fa-shopping-cart"></i>
-        <div *ngIf="courseShop.length > 0">
-          {{ courseShop.length }}
-        </div>
-      </a-->
       <a *ngIf="notifications == 0" class="nav-link text-success"><i class="far fa-bell"></i></a>
       <div *ngIf="notifications != 0" ngbDropdown placement="bottom-right" class="d-inline-block">
         <a class="nav-link text-success" ngbDropdownToggle><i class="far fa-bell"></i><b class="text-danger" style="font-size:12px">{{notifications}}</b></a>

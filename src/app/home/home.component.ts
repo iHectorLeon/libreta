@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
+import { environment } from '../../environments/environment';
 
 import { HomeService } from './homeservices/home.service';
 
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit {
   public identiti;
   public loading:boolean = false;
   public cursos:any;
+  public environment: any;
   /*
   Constructor de la clase
   */
@@ -24,6 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.environment = environment.production;
     this.identiti = this.homeservice.getIdentiti();
     this.token = this.homeservice.getToken();
     if(this.token){

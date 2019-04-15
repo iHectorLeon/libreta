@@ -16,7 +16,7 @@
     <hr>
     <div class="card animated fadeIn fast" *ngFor="let crs of cursoslist, let id=index">
       <div class="card-header">
-        <button type="button" class="btn btn-link enlace" (click)="getCourse(crs.id)">
+        <button type="button" class="btn btn-outline-success" (click)="getCourse(crs.id)">
           <h6><i class="far fa-arrow-alt-circle-right"></i> {{crs.title}} CLAVE: {{crs.code}}</h6>
         </button>
       </div>

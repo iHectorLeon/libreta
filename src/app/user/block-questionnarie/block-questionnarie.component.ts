@@ -206,7 +206,7 @@ export class BlockQuestionnarieComponent implements OnInit {
         this.answersStudent_v1 = new AnswersV1(idAnsQue.idquestion ,this.answerStudentQues);
         this.answersStudent_v1_Array.push(this.answersStudent_v1);
       }
-      //this.setGradesQuestionnarie(this.answersStudent_v1_Array, this.gradefinal);
+      this.setGradesQuestionnarie(this.answersStudent_v1_Array, this.gradefinal);
     }
     //terminan cuestionarios map, opt, tf y group
 

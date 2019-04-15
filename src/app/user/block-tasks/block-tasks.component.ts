@@ -35,7 +35,7 @@ export class BlockTasksComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   /*
@@ -91,7 +91,6 @@ export class BlockTasksComponent implements OnInit {
       this.taskStudent.push({idtask,content,type,label});
       this.isAttachmen = true;
     }
-    console.log(this.taskStudent);
   }
 
   /*

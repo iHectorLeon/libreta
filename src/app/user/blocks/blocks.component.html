@@ -100,14 +100,14 @@
             </ng-template>
             <ng-template ngbPanelContent>
               <div *ngIf="indiceBlock==0 && !itemBlock.track" class="card-header">
-                <button type="button" class="btn btn-link enlace" (click)="getBlock(itemBlock.id, false)">
+                <button type="button" class="btn btn-outline-success" (click)="getBlock(itemBlock.id, false)">
                   <h6>
                     <i class="far fa-flag"></i> Iniciar Curso
                   </h6>
                 </button>
               </div>
               <div *ngIf="itemBlock.track" class="card-header">
-                <button type="button" class="btn btn-link enlace" (click)="getBlock(itemBlock.id, false)">
+                <button type="button" class="btn btn-outline-success" (click)="getBlock(itemBlock.id, false)">
                   <h6>
                     <i class="far fa-calendar-check"></i> {{itemBlock.section}}.{{itemBlock.title}}
                   </h6>
@@ -120,7 +120,7 @@
               </div>
               <div *ngFor="let itemBlockL of blockList">
                 <div *ngIf="itemBlockL.number !=0 && itemBlock.section == itemBlockL.section && itemBlockL.track" class="list-group-item">
-                  <button type="button" class="btn btn-link enlace" (click)="getBlock(itemBlockL.id, false)">
+                  <button type="button" class="btn btn-outline-success" (click)="getBlock(itemBlockL.id, false)">
                     <i class="far fa-calendar-check"></i> {{itemBlockL.section}}.{{itemBlockL.number}} {{itemBlockL.title | slice:0:40 }}
                   </button>
                 </div>

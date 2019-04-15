@@ -167,7 +167,6 @@ export class MycoursesComponent implements OnInit, DoCheck {
 
     this._cursosService.showBlocksTrack(this.groupid, this.token).subscribe(data=>{
       this.block = data.message.blocks;
-      console.log(data.message.groupDates);
       for(let idevent of data.message.groupDates){
         this.dataevents.push({
           title: idevent.label,

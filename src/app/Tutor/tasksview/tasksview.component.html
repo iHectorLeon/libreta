@@ -126,7 +126,7 @@
               </div>
             </div>
 
-            <div *ngIf="!gradeTask.length<=0">
+            <div *ngIf="gradeTask.length > 0">
               <i class="fas fa-info-circle"></i> Se guardaran las siguientes calificaciones
               <div *ngFor="let grade of gradeTask" class="row">
                 <div class="col-lg-4">
@@ -161,10 +161,10 @@
           <button *ngIf="gradeTask.length<=0" type="button" class="btn btn-success" disabled>
             <i class="fas fa-check"></i> Aceptar
           </button>
-          <button *ngIf="!gradeTask.length<=0" type="button" class="btn btn-success" (click)="sendGrades(comment.value)">
+          <button *ngIf="gradeTask.length>0" type="button" class="btn btn-success" (click)="sendGrades(comment.value)">
             <i class="fas fa-check"></i> Aceptar
           </button>
-          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="refresData()">
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="getTask()">
             <i class="fas fa-times"></i> Cancelar
           </button>
         </div><!-- cierre footer-modal-->

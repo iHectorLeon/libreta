@@ -1,0 +1,11 @@
+{
+  "window.zoomLevel": 2,
+    "workbench.iconTheme": "vscode-icons",
+    "typescript.extension.sortImports.sortOnSave": true,
+    "files.autoSave": "off",
+    "bma-coverage":{
+        "lcovs":[
+            "./coverage/lcov.info"
+        ]
+    }
+}

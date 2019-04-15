@@ -19,10 +19,10 @@
       </button>
     </div>
     <div class="col-md-4">
-      <h5><i class="fas fa-book"></i> Curso: <span class="text-success">{{listRooster.coursetitle}}</span></h5>
+      <h5><i class="fas fa-book"></i> Curso: <span class="text-success">{{ listRooster.coursetitle }}</span></h5>
     </div>
     <div class="col-md-4">
-      <h5><i class="fas fa-users"></i> Grupo: <span class="text-success">{{listRooster.groupcode}}</span></h5>
+      <h5><i class="fas fa-users"></i> Grupo: <span class="text-success">{{ listRooster.groupcode}}</span></h5>
     </div>
   </div>
   <div class="row">
@@ -194,18 +194,11 @@
     <ngb-tab>
       <ng-template ngbTabTitle><div class="text-success"><i class="far fa-calendar-alt"></i> Actividades</div></ng-template>
       <ng-template ngbTabContent>
-        <div *ngIf="messageSuccesevent!=null" class="alert alert-success alert-dismissible fade show" role="alert">
-          {{messageSuccesevent}}
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <br>
         <button type="button" class="btn btn-success blockquote" (click)="showModal(newevent)">
           <i class="fas fa-calendar-alt"></i> Agregar nueva actividad
         </button>
         <br>
-        <ng-fullcalendar #calendarActivities [options]="calendarOptions" [(eventsModel)]="events"></ng-fullcalendar>
+        <ng-fullcalendar #calendarActivities [options]="calendarOptions" [(eventsModel)]="dataTask"></ng-fullcalendar>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
@@ -295,7 +288,7 @@
 <ng-template #newDoubtComment let-c="close" let-d="dismiss" class="animated fast fadeIn modal-side modal-">
   <div class="modal-header">
     <h4 class="modal-title"><i class="fas fa-tag"></i> Enviar duda o comentario comentario</h4>
-    <button type="button" class="close" aria-label="Close" (click)="closeDialog()">
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -316,7 +309,7 @@
 <ng-template #newcomment let-c="close" let-d="dismiss" class="animated fast fadeIn modal-side modal-">
   <div class="modal-header">
     <h4 class="modal-title"><i class="far fa-comments"></i> Agregar comentario</h4>
-    <button type="button" class="close" aria-label="Close" (click)="closeDialog()">
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -331,7 +324,7 @@
 <ng-template #replyto let-c="close" let-d="dismiss" class="animated fast fadeIn modal-side modal-">
   <div class="modal-header">
     <h4 class="modal-title"><i class="far fa-comment"></i> Responder</h4>
-    <button type="button" class="close" aria-label="Close" (click)="closeDialog()">
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -351,6 +344,12 @@
     </button>
   </div>
   <div class="modal-body">
+    <div *ngIf="messageSuccesevent!=null" class="alert alert-success alert-dismissible fade show" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <i class="fas fa-exclamation-circle"></i> {{messageSuccesevent}}
+    </div>
     <div *ngIf="messageErrorevent!=null" class="alert alert-warning" role="alert">
       <i class="fas fa-exclamation-triangle"></i> {{messageErrorevent}}
     </div>

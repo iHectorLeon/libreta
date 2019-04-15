@@ -183,7 +183,6 @@ export class UserService{
   */
   setNotification(message){
     let params = JSON.stringify(message);
-    console.log(params);
     let headers = {headers: new HttpHeaders({
       'Content-Type':'application/json',
       'x-access-token':this.token

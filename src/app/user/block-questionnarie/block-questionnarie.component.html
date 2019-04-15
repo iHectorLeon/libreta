@@ -1,12 +1,12 @@
 <div *ngIf="block.data.questionnarie.maxAttempts != block.data.attempts">
   <div class="alert alert-secondary" role="alert">
-    <span>Has usado {{block.data.attempts}} de {{block.data.questionnarie.maxAttempts}} intentos permitidos</span>
+    <span><i class="fas fa-exclamation-circle"></i> Has usado {{block.data.attempts}} de {{block.data.questionnarie.maxAttempts}} intentos permitidos</span>
   </div>
 </div>
 
 <div *ngIf="block.data.questionnarie.maxAttempts == block.data.attempts">
   <div class="alert alert-danger" role="alert">
-    <span>Has agotado los intentos permitidos</span>
+    <span><i class="fas fa-exclamation-triangle"></i> Has agotado los intentos permitidos</span>
   </div>
 </div>
 
@@ -252,7 +252,7 @@
             <h4>Total de aciertos: {{gradefinal}}</h4>
             <h4>Calificación obtenida: {{grade | number:'.0-2'}}</h4>
           </div>
-          <div *ngIf="block.data.questionnarie.type != 'test' && grade < block.data.questionnarie.minimum" class="text-danger text-justify">
+          <div *ngIf="block.data.questionnarie.type != 'test' && grade < block.data.questionnarie.minimum" class="text-danger text-center">
             <h2>
               <i class="fas fa-quote-left"></i> Puntuación obtenida en esta evaluación
             </h2>
