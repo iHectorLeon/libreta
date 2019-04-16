@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -9,19 +9,21 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ErrorComponent {
 
-  typeError:any;
-  closemodal:NgbModalRef;
+  typeError: any;
+  closemodal: NgbModalRef;
 
-  constructor(private router:Router, private route:ActivatedRoute, private modalService:NgbModal) {
-    this.route.params.subscribe(params=>{
-      if( params ['typeError']!=null){
-        this.typeError = params ['typeError'];
+  constructor(private router: Router, private route: ActivatedRoute, private modalService: NgbModal) {
+    this.route.params.subscribe(params => {
+      if ( params.typeError != null) {
+        this.typeError = params.typeError;
       }
     });
   }
 
-  public showError(data){
-    console.log(data);
+  public logoutExpired() {
+    localStorage.removeItem('identiti');
+    localStorage.removeItem('token');
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
-
 }
