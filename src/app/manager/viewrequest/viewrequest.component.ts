@@ -19,9 +19,9 @@ declare var $: any;
 })
 export class ViewrequestComponent implements OnInit {
 
-  loading: boolean;
+  loading = false;
   loadingfile: boolean;
-  numberrequest: any
+  numberrequest: any;
   request: any;
   closemodal: NgbModalRef;
   reasonOk: boolean;
@@ -59,7 +59,7 @@ export class ViewrequestComponent implements OnInit {
     this.getRequestView();
   }
 
-  getRequestView(){
+  getRequestView() {
     this.total = 0;
     this.subtotal = 0;
     this.IVA = 0;
@@ -108,7 +108,7 @@ export class ViewrequestComponent implements OnInit {
   /*
 
   */
-  quitGruop(){
+  quitGruop() {
     this.closeModal();
     this.loading = true;
     const dett = this.request.details;
@@ -125,7 +125,7 @@ export class ViewrequestComponent implements OnInit {
       details: dett,
       temp1: tmp1,
       temp2: tmp2
-    }
+    };
     this.managerServices.updateRequestManager(jsoupdate).subscribe(
       data => {
         this.getRequestView();
@@ -197,12 +197,12 @@ export class ViewrequestComponent implements OnInit {
   metodo para enviar el comprobante de pago
   */
   public setPayment(notes?: any) {
-    if (notes != '') {
+    if (notes !== '') {
 // tslint:disable-next-line: max-line-length
-      this.paymentmodel = new payment(this.numberrequest,this.invoiceNumber,this.request.invoice.idAPIExternal,this.fileid,this.request.requester.name,notes);
+      this.paymentmodel = new payment(this.numberrequest, this.invoiceNumber, this.request.invoice.idAPIExternal, this.fileid, this.request.requester.name, notes);
     } else {
 // tslint:disable-next-line: max-line-length
-      this.paymentmodel = new payment(this.numberrequest,this.invoiceNumber,this.request.invoice.idAPIExternal,this.fileid,this.request.requester.name);
+      this.paymentmodel = new payment(this.numberrequest, this.invoiceNumber, this.request.invoice.idAPIExternal, this.fileid, this.request.requester.name);
     }
     this.managerServices.sendPayment(this.paymentmodel).subscribe(
       data => {
