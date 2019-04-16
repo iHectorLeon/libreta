@@ -1,12 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { log } from 'util';
 import { ManagerserviceService } from './../managerservice.service';
-import {
-  ModalDismissReasons,
-  NgbModal,
-  NgbModalRef,
-  NgbModule
-  } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { payment } from './../manager.models';
 import { UserService } from './../../shared/sharedservices/user.service';
 
@@ -42,7 +38,7 @@ export class ViewrequestComponent implements OnInit {
   token: any;
   fileid: any;
   filename: any;
-  groupscsv: any[] = [];
+  groupscsv: any;
 
 // tslint:disable-next-line: max-line-length
   constructor(private modalService: NgbModal, private router: Router, private activatedroute: ActivatedRoute, private managerServices: ManagerserviceService, private userService: UserService) {
@@ -103,6 +99,7 @@ export class ViewrequestComponent implements OnInit {
   showGroup(idgroup: any, content: any) {
     this.groupscsv = this.request.temp2.find( id => id.idgroup === idgroup);
     this.showModal(content);
+    console.log(this.groupscsv);
   }
 
   /*
