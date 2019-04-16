@@ -10,45 +10,46 @@ import {
 import { payment } from './../manager.models';
 import { UserService } from './../../shared/sharedservices/user.service';
 
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-viewrequest',
   templateUrl: './viewrequest.component.html',
-  providers: [ManagerserviceService, UserService]
+  providers: [ ManagerserviceService, UserService]
 })
 export class ViewrequestComponent implements OnInit {
 
-  loading:boolean;
-  loadingfile:boolean;
-  numberrequest:any
-  request:any;
-  closemodal:NgbModalRef;
-  reasonOk:boolean;
-  paymentmodel:payment;
+  loading: boolean;
+  loadingfile: boolean;
+  numberrequest: any
+  request: any;
+  closemodal: NgbModalRef;
+  reasonOk: boolean;
+  paymentmodel: payment;
 
-  total:any;
-  subtotal:any;
-  IVA:any;
+  total: any;
+  subtotal: any;
+  IVA: any;
 
-  stringRegex = /^([A-Za-z])+$/
-  stringRegexBlank = /([A-Za-z])\s([A-Za-z])/
+  stringRegex = /^([A-Za-z])+$/;
+  stringRegexBlank = /([A-Za-z])\s([A-Za-z])/;
 
-  messageSuccess:any;
-  messageError:any;
-  invoiceNumber:number;
-  codegroup:any;
-  idgrouptmp:any;
-  token:any;
-  fileid:any;
-  filename:any;
-  groupscsv:any[]=[];
+  messageSuccess: any;
+  messageError: any;
+  invoiceNumber: number;
+  codegroup: any;
+  idgrouptmp: any;
+  token: any;
+  fileid: any;
+  filename: any;
+  groupscsv: any[] = [];
 
-  constructor(private modalService:NgbModal, private router:Router, private activatedroute:ActivatedRoute, private managerServices:ManagerserviceService, private userService:UserService) {
+// tslint:disable-next-line: max-line-length
+  constructor(private modalService: NgbModal, private router: Router, private activatedroute: ActivatedRoute, private managerServices: ManagerserviceService, private userService: UserService) {
     this.token = this.userService.getToken();
-    this.activatedroute.params.subscribe(params=>{
-      if(params['numberrequest']!=null){
-        this.numberrequest = params['numberrequest']
+    this.activatedroute.params.subscribe(params => {
+      if (params.numberrequest != null) {
+        this.numberrequest = params.numberrequest;
       }
     });
 
@@ -64,15 +65,15 @@ export class ViewrequestComponent implements OnInit {
     this.IVA = 0;
     this.loading = true;
     this.managerServices.getRequestFinder(this.numberrequest).subscribe(
-      data=>{
+      data => {
         this.request = data.request;
         this.invoiceNumber = data.invoiceNumber;
-        for(let id of this.request.details){
-          for(let idtemp of this.request.temp1){
-            if(idtemp.idgroup == id.item._id){
+        for (const id of this.request.details) {
+          for (const idtemp of this.request.temp1) {
+            if (idtemp.idgroup === id.item._id) {
               this.subtotal = this.subtotal + (id.item.course.cost * idtemp.studentsforgroup.length);
-              this.IVA = this.subtotal*.16
-              this.total = this.subtotal +this.IVA;
+              this.IVA = this.subtotal * .16;
+              this.total = this.subtotal + this.IVA;
             }
           }
         }
@@ -83,14 +84,14 @@ export class ViewrequestComponent implements OnInit {
   /*
   metodo para redireccionar al usuario y pueda agregar un nuevo grupo a la solicitud
   */
-  addnewGroup(){
-    this.router.navigate(["/newrequest",this.request._id, this.request.reqNumber, this.request.label]);
+  addnewGroup() {
+    this.router.navigate(['/newrequest', this.request._id, this.request.reqNumber, this.request.label]);
   }
 
   /*
 
   */
-  deleteGroupRequest(idgroup, codegruop, content){
+  deleteGroupRequest(idgroup: any, codegruop: any, content: any) {
     this.idgrouptmp = idgroup;
     this.codegroup = codegruop;
     this.showModal(content);
@@ -99,8 +100,8 @@ export class ViewrequestComponent implements OnInit {
   /*
 
   */
-  showGroup(idgroup, content){
-    this.groupscsv = this.request.temp2.find(id=> id.idgroup == idgroup);
+  showGroup(idgroup: any, content: any) {
+    this.groupscsv = this.request.temp2.find( id => id.idgroup === idgroup);
     this.showModal(content);
   }
 
@@ -110,25 +111,25 @@ export class ViewrequestComponent implements OnInit {
   quitGruop(){
     this.closeModal();
     this.loading = true;
-    let dett = this.request.details;
-    let tmp1 = this.request.temp1;
-    let tmp2 = this.request.temp2;
-    let det1 = dett.indexOf(dett.find(idtt => idtt.item._id == this.idgrouptmp));
-    let val1 = tmp1.indexOf(tmp1.find(idtm => idtm.idgroup == this.idgrouptmp));
-    let val2 = tmp2.indexOf(tmp2.find(idtm => idtm.idgroup == this.idgrouptmp));
-    dett.splice(det1,1);
-    tmp1.splice(val1,1);
-    tmp2.splice(val2,1);
-    let jsoupdate={
-      'number':this.numberrequest,
-      'details':dett,
-      'temp1':tmp1,
-      'temp2':tmp2
+    const dett = this.request.details;
+    const tmp1 = this.request.temp1;
+    const tmp2 = this.request.temp2;
+    const det1 = dett.indexOf(dett.find(idtt => idtt.item._id === this.idgrouptmp));
+    const val1 = tmp1.indexOf(tmp1.find(idtm => idtm.idgroup === this.idgrouptmp));
+    const val2 = tmp2.indexOf(tmp2.find(idtm => idtm.idgroup === this.idgrouptmp));
+    dett.splice(det1, 1);
+    tmp1.splice(val1, 1);
+    tmp2.splice(val2, 1);
+    const jsoupdate = {
+      number: this.numberrequest,
+      details: dett,
+      temp1: tmp1,
+      temp2: tmp2
     }
     this.managerServices.updateRequestManager(jsoupdate).subscribe(
-      data=>{
+      data => {
         this.getRequestView();
-      },error=>{
+      }, error => {
         console.log(error);
         this.closeModal();
       }
@@ -138,25 +139,25 @@ export class ViewrequestComponent implements OnInit {
   /*
   metodo para mostrar el modal de la cancelación de la solicitud
   */
-  public showModal(content){
-    this.closemodal = this.modalService.open(content, {size:'lg'});
+  public showModal(content: any) {
+    this.closemodal = this.modalService.open(content, {size: 'lg'});
   }
-  public closeModal(){
+  public closeModal() {
     this.closemodal.dismiss();
   }
 
   /*
   Metodo para cancelar una solicitud
   */
-  public deletedRequest(reason){
-    var requestDeleted = {
-      "number":this.request.reqNumber,
-      "statusReason":reason
-    }
-    this.managerServices.deletedRequest(requestDeleted).subscribe(data=>{
-      this.router.navigate(["/solicitudes"]);
+  public deletedRequest(reason: any) {
+    const requestDeleted = {
+      number: this.request.reqNumber,
+      statusReason: reason
+    };
+    this.managerServices.deletedRequest(requestDeleted).subscribe(data => {
+      this.router.navigate(['/solicitudes']);
       this.closeModal();
-    },error=>{
+    }, error => {
       console.log(error);
     });
   }
@@ -164,28 +165,28 @@ export class ViewrequestComponent implements OnInit {
   /*
   Metodo para validar espacios en blanco
   */
-  public validateSpaceBlank(value):boolean{
+  public validateSpaceBlank(value: any): boolean {
     this.reasonOk = this.stringRegexBlank.test(value) || this.stringRegex.test(value);
-    return this.reasonOk
+    return this.reasonOk;
   }
 
   /*
   Metodo para subir el formato de excel con los correos
   */
-  public uploadFile($event){
+  public uploadFile($event: any) {
     this.loadingfile = true;
     this.messageSuccess = null;
     this.messageError = null;
-    if($event.target.files.length === 1 && $event.target.files[0].size <= 1048576){
-      this.managerServices.setAttachment($event.target.files[0], this.invoiceNumber, this.numberrequest,this.token).subscribe(
-        data=>{
-          this.messageSuccess = "Se cargo el archivo correctamente"
-          this.fileid = data.fileId
+    if ($event.target.files.length === 1 && $event.target.files[0].size <= 1048576) {
+      this.managerServices.setAttachment($event.target.files[0], this.invoiceNumber, this.numberrequest, this.token).subscribe(
+        data => {
+          this.messageSuccess = 'Se cargo el archivo correctamente';
+          this.fileid = data.fileId;
           this.filename = $event.target.files[0].name;
           this.loadingfile = false;
-        },error=>{
+        }, error => {
           console.log(error);
-          this.messageError = "Ocurrió un error inesperado" + error;
+          this.messageError = 'Ocurrió un error inesperado' + error;
           this.loadingfile = false;
         }
       );
@@ -195,18 +196,20 @@ export class ViewrequestComponent implements OnInit {
   /*
   metodo para enviar el comprobante de pago
   */
-  public setPayment(notes?){
-    if(notes!=''){
+  public setPayment(notes?: any) {
+    if (notes != '') {
+// tslint:disable-next-line: max-line-length
       this.paymentmodel = new payment(this.numberrequest,this.invoiceNumber,this.request.invoice.idAPIExternal,this.fileid,this.request.requester.name,notes);
-    }else{
+    } else {
+// tslint:disable-next-line: max-line-length
       this.paymentmodel = new payment(this.numberrequest,this.invoiceNumber,this.request.invoice.idAPIExternal,this.fileid,this.request.requester.name);
     }
     this.managerServices.sendPayment(this.paymentmodel).subscribe(
-      data=>{
+      data => {
         this.closeModal();
         this.getRequestView();
         this.messageSuccess = data.message;
-      },error=>{
+      }, error => {
         console.log(error);
       }
     );
