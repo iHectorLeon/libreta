@@ -40,22 +40,11 @@
   <!--  -->
   <!--Cuerpo del modal para el aviso de envió de evaluación de tareas-->
   <div class="modal-body">
-
-    <div *ngIf="lastTaskDate && lastTaskDelivered">
       <div class="alert alert-warning" role="alert">
         <h6>Al enviar de nuevo el ejercicio, se estara actualizando la fecha y hora de entrega ¿Deseas continuar?</h6>
       </div>
       <button type="button" class="btn btn-success" (click)="sendTask('true')"><i class="fas fa-thumbtack"></i> Enviar tarea</button>
       <button type="button" class="btn btn-success" (click)="closeDialog()"><i class="fas fa-times"></i> Cancelar</button>
-    </div>
-
-    <div *ngIf="!lastTaskDate && !lastTaskDelivered">
-      <div class="alert alert-secondary" role="alert">
-        <h6>Al enviar el ejercicio, se estara registrando la fecha y hora de entrega ¿Deseas continuar?</h6>
-      </div>
-      <button type="button" class="btn btn-success" (click)="sendTask('false')"><i class="fas fa-thumbtack"></i> Enviar tarea</button>
-      <button type="button" class="btn btn-success" (click)="closeDialog()"><i class="fas fa-times"></i> Cancelar</button>
-    </div>
   </div>
   <!--Termina cuerpo del modal-->
 </ng-template>
