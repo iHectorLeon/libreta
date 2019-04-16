@@ -41,7 +41,7 @@
     </div>
     <!--Seccion de las pestañas para el cuerpo de la vista del curso-->
     <div class="col-9">
-      <ngb-tabset [justify]="justified">
+      <ngb-tabset>
         <ngb-tab *ngIf="endCourse">
           <!--Seccion del temario del curso-->
           <ng-template ngbTabTitle><div class="text-success">Contenido</div></ng-template>
@@ -332,7 +332,7 @@
           <ng-template ngbTabTitle><div class="text-success">Calendario</div></ng-template>
           <ng-template ngbTabContent>
             <hr>
-            <ng-fullcalendar #ucCalendar [options]="calendarOptions" [(eventsModel)]="events"></ng-fullcalendar>
+            <ng-fullcalendar #ucCalendar [options]="calendarOptions" [(eventsModel)]="dataevents"></ng-fullcalendar>
           </ng-template>
         </ngb-tab>
 

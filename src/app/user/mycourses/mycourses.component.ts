@@ -106,7 +106,7 @@ export class MycoursesComponent implements OnInit, DoCheck {
   public block: any [] = [];
   public blockgrades: any[] = [];
   public sections: any [] = [];
-  public contcourse: any [] = [];
+  public contcourse: any;
   public idc: string;
   public totalgrades = 0;
   public gradefinal = 0;
