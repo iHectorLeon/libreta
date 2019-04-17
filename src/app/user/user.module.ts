@@ -23,11 +23,11 @@ import { ViewNotificationsComponent } from './view-notifications/view-notificati
   imports: [
     CommonModule,
     UserroutingModule,
-    ArchwizardModule,
     EmbedVideo,
     NgbModule,
     NgxPaginationModule,
-    FullCalendarModule
+    FullCalendarModule,
+    ArchwizardModule
   ],
   declarations: [
     BlocksComponent,

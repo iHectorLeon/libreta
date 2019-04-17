@@ -11,64 +11,66 @@ import { UserService } from './../../shared/sharedservices/user.service';
 @Component({
   selector: 'app-block-questionnarie',
   templateUrl: './block-questionnarie.component.html',
-  providers:[CourseService, UserService, DecimalPipe]
+  providers: [CourseService, UserService, DecimalPipe]
 })
 export class BlockQuestionnarieComponent implements OnInit {
 
-  @Input() block:any;
+  @Input() block: any;
 
-  attemp:Attemp;
-  identiti:any;
-  dataQuestionnarie:any;
+  attemp: Attemp;
+  identiti: any;
+  dataQuestionnarie: any;
 
-  answerStudentQues:Answers[]=[];
+  answerStudentQues: Answers [] = [];
 
-  answerStudent:Answers[]=[];
-  answersArray:Answers[]=[];
+  answerStudent: Answers [] = [];
+  answersArray: Answers [] = [];
 
-  answersArrayMG:AnswersMG[]=[];
-  answerStudentMG:AnswersMG[]=[];
-  answerstxttMG:AnswersMG;
+  answersArrayMG: AnswersMG [] = [];
+  answerStudentMG: AnswersMG [] = [];
+  answerstxttMG: AnswersMG;
 
-  arrayAspect:AnswersTest[]=[];
+  arrayAspect: AnswersTest [] = [];
 
-  answers_v1:AnswersV1;
-  answers_v1Array:AnswersV1[]=[];
+  answersv1: AnswersV1;
+  answersv1Array: AnswersV1 [] = [];
 
-  answersStudent_v1:AnswersV1;
-  answersStudent_v1_Array:AnswersV1[]=[];
+  answersStudentv1: AnswersV1;
+  answersStudentv1Array: AnswersV1 [] = [];
 
-  resultAnswerTestAtencion:AnswersTest;
-  resultAnswerTestClaridad:AnswersTest
-  resultAnswerTestReparacion:AnswersTest
-  resultAnswersAspect:AnswersAspects;
-  resultsArrayAnswersAspects:AnswersAspects[]=[];
+  resultAnswerTestAtencion: AnswersTest;
+  resultAnswerTestClaridad: AnswersTest;
+  resultAnswerTestReparacion: AnswersTest;
+  resultAnswersAspect: AnswersAspects;
+  resultsArrayAnswersAspects: AnswersAspects [] = [];
 
 
-  answersQuiz:any[]=[];
-  questionsBlock:any[]=[];
-  answerTest:any[]=[];
+  answersQuiz: any[] = [];
+  questionsBlock: any[] = [];
+  answerTest: any[] = [];
 
-  gradefinal:number;
-  grademinimun:number;
-  grade:number;
-  weight:number;
-  attemps:number;
-  maxAttempts:number;
-  totalQuestions;
+  gradefinal: number;
+  grademinimun: number;
+  grade: number;
+  weight: number;
+  attemps: number;
+  maxAttempts: number;
+  totalQuestions: number;
 
-  resultQuestion:boolean=false;
-  isValidateAttemp:boolean=false;
+  resultQuestion = false;
+  isValidateAttemp = false;
 
-  groupid:any;
-  blockidTo:any;
-  label:any;
+  groupid: any;
+  blockidTo: any;
+  label: any;
 
-  closemodal:NgbModalRef;
+  closemodal: NgbModalRef;
 
-  constructor(private course:CourseService, private userService:UserService, private modalService:NgbModal, private decimalPipe:DecimalPipe) {
-
-  }
+  constructor(
+    private course: CourseService,
+    private userService: UserService,
+    private modalService: NgbModal
+    ) { }
 
   ngOnInit() {
     this.questions();
@@ -78,81 +80,81 @@ export class BlockQuestionnarieComponent implements OnInit {
   /*
   Metodo para traer las respuestas del cuestionario
   */
-  public questions(){
-    let totalQuestions = 0
+  public questions() {
+    let totalQuestions = 0;
     let indexquestions = 0;
     let index = 0;
-    let arrayTemp:any []=[];
-    let arrayTempGM:any[]=[];
-    if(this.block.data.questionnarie.maxAttempts == this.block.data.attempts){
+    const arrayTemp: any[] = [];
+    const arrayTempGM: any[] = [];
+    if (this.block.data.questionnarie.maxAttempts === this.block.data.attempts) {
       this.isValidateAttemp = false;
-    }else{
+    } else {
       this.isValidateAttemp = true;
     }
 
-    if(this.block.data.questionnarie.type != 'test'){
+    if (this.block.data.questionnarie.type !== 'test') {
       this.grademinimun = this.block.data.questionnarie.minimum;
-      for(let id of this.block.data.questionnarie.questions){
-        this.answersArray =[];
-        let pivote = id.answers;
-        let label = id.label;
-        if(label!=null){
-          this.label = label
-        }else{
-          this.label = null
+      for (const id of this.block.data.questionnarie.questions) {
+        this.answersArray = [];
+        const pivote = id.answers;
+        const label = id.label;
+        if (label !== null) {
+          this.label = label;
+        } else {
+          this.label = null;
         }
-        for(let idp of pivote){
-          if(id.type=='option'){
-            index=0;
-            let idquestion=id.id;
-            let type=id.type
-            let answer = idp.index;
+        for (const idp of pivote) {
+          if (id.type === 'option') {
+            index = 0;
+            const idquestion = id.id;
+            const type = id.type;
+            const answer = idp.index;
             this.answersArray.push({answer, type, index, indexquestions});
-            this.answers_v1 = new AnswersV1(idquestion,this.answersArray);
-            this.answers_v1Array.push(this.answers_v1);
+            this.answersv1 = new AnswersV1(idquestion, this.answersArray);
+            this.answersv1Array.push(this.answersv1);
             totalQuestions++;
           }
-          if(id.type=='tf'){
-            index=0;
-            let idquestion=id.id;
-            let type=id.type
-            let answer = idp.tf;
-            this.answersArray.push({answer, type, index,indexquestions});
-            this.answers_v1 = new AnswersV1(idquestion,this.answersArray);
-            this.answers_v1Array.push(this.answers_v1);
+          if (id.type === 'tf') {
+            index = 0;
+            const idquestion = id.id;
+            const type = id.type;
+            const answer = idp.tf;
+            this.answersArray.push({answer, type, index, indexquestions});
+            this.answersv1 = new AnswersV1(idquestion, this.answersArray);
+            this.answersv1Array.push(this.answersv1);
             totalQuestions++;
           }
 
-          if(id.type =='text'){
-            index=0;
-            let idquestion=id.id;
-            let type=id.type
-            let answer = idp.text;
-            this.answersArray.push({answer, type, index,indexquestions});
-            this.answers_v1 = new AnswersV1(idquestion,this.answersArray);
-            this.answers_v1Array.push(this.answers_v1);
+          if (id.type === 'text') {
+            index = 0;
+            const idquestion = id.id;
+            const type = id.type;
+            const answer = idp.text;
+            this.answersArray.push({answer, type, index, indexquestions});
+            this.answersv1 = new AnswersV1(idquestion, this.answersArray);
+            this.answersv1Array.push(this.answersv1);
             totalQuestions++;
           }
-          if(id.type=='map' || id.type=='group'){
-            index=0;
-            let idquestion=id.id;
-            let type=id.type
-            for(let answer of idp.group){
-              this.answersArray.push({answer, type, index,indexquestions});
-              index++
+          if (id.type === 'map' || id.type === 'group') {
+            index = 0;
+            const idquestion = id.id;
+            const type = id.type;
+            for (const answer of idp.group) {
+              this.answersArray.push({answer, type, index, indexquestions});
+              index ++;
               totalQuestions++;
             }
-            this.answers_v1 = new AnswersV1(idquestion,this.answersArray);
-            this.answers_v1Array.push(this.answers_v1);
+            this.answersv1 = new AnswersV1(idquestion, this.answersArray);
+            this.answersv1Array.push(this.answersv1);
           }
           indexquestions++;
         }
       }
-      this.weight = Math.round((100/totalQuestions)*100)/100;
-    }else{
+      this.weight = Math.round((100 / totalQuestions) * 100) / 100;
+    } else {
       this.weight = 1;
       this.answerTest = this.block.data.questionnarie.diagnostic.aspects;
-      this.answers_v1Array = this.block.data.questionnarie.questions[0].group;
+      this.answersv1Array = this.block.data.questionnarie.questions[0].group;
     }
     this.totalQuestions = totalQuestions;
   }
@@ -162,10 +164,10 @@ export class BlockQuestionnarieComponent implements OnInit {
   */
   public getAnswer(idquestion: any, answer: string, type: any, index: any , indexquestions: number) {
     if (this.answerStudent.length > 0) {
-      if (this.answerStudent.find(id => id.index == index && id.indexquestions === indexquestions)) {
+      if (this.answerStudent.find(id => id.index === index && id.indexquestions === indexquestions)) {
 // tslint:disable-next-line: max-line-length
         const indexRepeat = this.answerStudent.indexOf(this.answerStudent.find(id => id.index === index && id.indexquestions === indexquestions));
-        this.answerStudent.splice(indexRepeat,1);
+        this.answerStudent.splice(indexRepeat, 1);
         this.answerStudent.push({answer, type, index, indexquestions});
       } else {
         this.answerStudent.push({answer, type, index, indexquestions});
@@ -180,10 +182,10 @@ export class BlockQuestionnarieComponent implements OnInit {
   */
   public checkAnswersStudent(type: any) {
     this.answersQuiz  = [];
-    this.answersStudent_v1_Array = [];
+    this.answersStudentv1Array = [];
     this.gradefinal = 0;
-    if (this.answers_v1Array.length > 0 && type !== 'test') {
-      for (const idAnsQue of this.answers_v1Array) {
+    if (this.answersv1Array.length > 0 && type !== 'test') {
+      for (const idAnsQue of this.answersv1Array) {
         this.answerStudentQues = [];
         for (const id of idAnsQue.result) {
           for (const idAnsStu of this.answerStudent) {
@@ -198,14 +200,11 @@ export class BlockQuestionnarieComponent implements OnInit {
             }
           }
         }
-        this.answersStudent_v1 = new AnswersV1(idAnsQue.idquestion ,this.answerStudentQues);
-        this.answersStudent_v1_Array.push(this.answersStudent_v1);
+        this.answersStudentv1 = new AnswersV1(idAnsQue.idquestion, this.answerStudentQues);
+        this.answersStudentv1Array.push(this.answersStudentv1);
       }
-      this.setGradesQuestionnarie(this.answersStudent_v1_Array, this.gradefinal);
+      this.setGradesQuestionnarie(this.answersStudentv1Array, this.gradefinal);
     }
-    //terminan cuestionarios map, opt, tf y group
-
-    //cuestionarios tipo test
     if (this.answerStudent.length > 0 && type === 'test') {
       this.arrayAspect = [];
       this.resultsArrayAnswersAspects = [];
@@ -227,7 +226,6 @@ export class BlockQuestionnarieComponent implements OnInit {
           reparacion = reparacion + idAnswerTest.answer;
         }
       }
-
       if (genero === 0) {
         this.resultAnswerTestAtencion = new AnswersTest('Atención', atencion);
         this.resultAnswerTestClaridad = new AnswersTest('Claridad', claridad);
@@ -258,7 +256,6 @@ export class BlockQuestionnarieComponent implements OnInit {
       this.gradefinal = 100;
       this.setGradesQuestionnarie(this.resultsArrayAnswersAspects, this.gradefinal);
     }
-    ///Terminan los cuestionarios de tipo tests
   }
 
   /*

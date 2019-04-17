@@ -17,11 +17,6 @@ import { QuotationComponent } from './quotation/quotation.component';
 import { RecoverpasswordComponent } from './../shared/recoverpassword/recoverpassword.component';
 import { SigninComponent } from './signin/signin.component';
 
-
-
-
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -43,7 +38,7 @@ import { SigninComponent } from './signin/signin.component';
     QuotationComponent,
     CourseshopComponent
   ],
-  providers:[
+  providers: [
     HomeService
   ]
 })

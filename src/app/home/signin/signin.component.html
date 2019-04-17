@@ -1,12 +1,6 @@
 <div class="container">
   <div class="row" style="margin-top:15px;">
     <div class="col-12">
-      <!--
-      <div class="alert alert-warning" role="alert">
-        <p>Qué tal. Si estás ingresando aquí por la convocatoria de capacitación dirigida que envió La Comisión Mixta Estatal SEPH-SNTE del Sistema de Desarrollo Profesional de Carrera (SDPC), te informamos que debes realizar tu registro al curso deseado en: <a href="http://sidepaaeh.seph.gob.mx" target="_blank"> http://sidepaaeh.seph.gob.mx </a> antes de registrarte en este portal. El curso al que te hayas registrado estará disponible en este portal a partir del día 14 de Mayo del 2018.</p>
-        <p>Gracias</p>
-      </div>
-      -->
       <wizard navBarLocation="bottom">
         <wizard-step navigationSymbol="1">
           <h4 class="text-center">Ingresa tus datos personales</h4>
@@ -23,11 +17,11 @@
             <span *ngIf="!isDataPerson" class="text-danger">Los datos marcados con * son obligatorios</span>
             <hr>
           </form>
-          <button *ngIf="isDataPerson" type="button" class="btn btn-success" [goToStep]="datosPersonales(name.value, father.value, mother.value)"> Siguiente <i class="fas fa-angle-right"></i></button>
+          <button *ngIf="isDataPerson" type="button" class="btn btn-success" [goToStep] = "datosPersonales(name.value, father.value, mother.value)"> Siguiente <i class="fas fa-angle-right"></i></button>
           <button *ngIf="!isDataPerson" type="button" class="btn btn-success" disabled> Siguiente <i class="fas fa-angle-right"></i></button>
         </wizard-step>
 
-        <wizard-step >
+        <wizard-step>
           <div *ngIf="messa_err_org" class="alert alert-warning" role="alert">
             <i class="fas fa-exclamation-triangle"></i> {{messa_err_org}}
           </div>
@@ -146,7 +140,7 @@
       </wizard>
       <hr>
       <div class="container">
-        <p class="font-italic" style="<font-size:10px">
+        <p class="font-italic" style="font-size:10px">
         ACL SYSTEMS S.A. de C.V. (nombre comercial: ACL SYSTEMS) con domicilio en Rio Coahuayana 12, Colinas Del Lago, Cuautitlán Izcalli, México, C.P.54744,
         manifiesta que sus datos personales serán utilizados para fines de contacto, para permitir el registro en el sitio, para acceder al contenido del sitio,
         para facturación y cobro, para envío de publicidad. Para conocer mayor información sobre los términos y condiciones en que serán tratados sus datos personales,

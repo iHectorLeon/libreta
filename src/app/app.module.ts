@@ -1,7 +1,6 @@
 import { AdminconsoleModule } from './adminconsole/adminconsole.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ArchwizardModule } from 'ng2-archwizard';
 import { BrowserModule } from '@angular/platform-browser';
 import { ChartsModule } from 'ng2-charts';
 import { EditorModule } from './editor/editor.module';
@@ -55,7 +54,6 @@ import { UserModule } from './user/user.module';
     SearchModule,
     FormsModule,
     ManagerModule,
-    ArchwizardModule,
     NgxEditorModule,
     ScheduleModule,
     NgbModule,
