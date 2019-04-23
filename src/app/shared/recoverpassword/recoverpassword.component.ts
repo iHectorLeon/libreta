@@ -5,14 +5,14 @@ import { UserService } from './../sharedservices/user.service';
 @Component({
   selector: 'app-recoverpassword',
   templateUrl: './recoverpassword.component.html',
-  providers:[UserService, SharedService]
+  providers: [UserService, SharedService]
 })
 export class RecoverpasswordComponent implements OnInit {
-  messageSuccess:string;
-  messageError:string;
-  dataIsOk:boolean = false;
+  messageSuccess: string;
+  messageError: string;
+  dataIsOk = false;
   emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  constructor(private sharedservices:SharedService, private userService:UserService) {
+  constructor(private sharedservices: SharedService, private userService: UserService) {
 
   }
 
@@ -23,10 +23,10 @@ export class RecoverpasswordComponent implements OnInit {
   /*
   función para validar el correo electronico
   */
-  getusername(username:string){
-    if(username!='' && this.emailRegex.test(username)){
+  getusername(username: string) {
+    if (username !== '' && this.emailRegex.test(username)) {
       this.dataIsOk = true;
-    }else{
+    } else {
       this.dataIsOk = false;
     }
   }
@@ -36,13 +36,13 @@ export class RecoverpasswordComponent implements OnInit {
   /*
   funcion de envio de correo para la recuperacion de contraseña
   */
-  getPassword(username:any){
-    this.userService.getUserDetails(username).subscribe(data=>{
-      if(data.status>=400 && data.status<=500){
-        this.messageError = "El usuario no existe, favor de validar el correo electronico"
-      }else{
-        this.sharedservices.recoverPassword(username).subscribe(data=>{
-          this.messageSuccess = "Se enviò un mensaje a tu correo electrónico con instrucciones para recuperar tu contraseña."
+  getPassword(username: any) {
+    this.userService.getUserDetails(username).subscribe(data => {
+      if (data.status >= 400 && data.status <= 500) {
+        this.messageError = 'El usuario no existe, favor de validar el correo electronico';
+      } else {
+        this.sharedservices.recoverPassword(username).subscribe( () => {
+          this.messageSuccess = 'Se enviò un mensaje a tu correo electrónico con instrucciones para recuperar tu contraseña.';
         })
       }
     });

@@ -1,6 +1,5 @@
 import { CursoComponent } from './curso/curso.component';
 import { CursosComponent } from './cursos/cursos.component';
-import { GuiasComponent } from './guias/guias.component';
 import { LoginComponent } from './../shared/login/login.component';
 import { NgModule } from '@angular/core';
 import { QuotationComponent } from './quotation/quotation.component';
