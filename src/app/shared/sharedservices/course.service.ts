@@ -257,7 +257,7 @@ export class CourseService {
   }
   */
 
-  getMyGradesTask(groupid:any, blockid:any):Observable<any>{
+  getMyGradesTask(groupid: any, blockid: any): Observable<any> {
     let headers = new HttpHeaders({
       'x-access-token':this.token
     })

@@ -14,7 +14,7 @@ import { UserconfirmComponent } from './userconfirm/userconfirm.component';
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
-  {path: ' consoleuser', component: ConsoleuserComponent},
+  {path: 'consoleuser', component: ConsoleuserComponent},
   {path: 'avisoprivacidad', component: PrivacyComponent},
   {path: 'resetpass', component: ResetpasswordComponent},
   {path: 'recover/:tokentemp/:username', component: RecoverComponent},

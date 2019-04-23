@@ -11,20 +11,20 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserService{
 
-  public url:string;
-  public identiti;
-  public token;
-  public roles;
+  public url: string;
+  public identiti: any;
+  public token: any;
+  public roles: any;
 
 
-  constructor(private http:HttpClient){
+  constructor(private http: HttpClient) {
     this.url = environment.url;
   }
 
   //metodo para aplicar el login al usuario
-  singUp(usertologin):Observable<any>{
-    let json = JSON.stringify(usertologin);
-    return this.http.post(this.url+'login', json);
+  singUp(usertologin: any): Observable<any> {
+    const json = JSON.stringify(usertologin);
+    return this.http.post(this.url + 'login', json);
   }
 
   /*
@@ -200,41 +200,44 @@ export class UserService{
       'Content-Type':'application/json',
       'x-access-token':this.token
     })}
-    return this.http.put(this.url+'api/v1/user/message/close', params, headers)//.map(res=>res.json());
+    return this.http.put(this.url+'api/v1/user/message/close', params, headers);
   }
 
   /*
   crear un follos a determinado elemento
   */
   setFollow(follow){
-    let params = JSON.stringify(follow);
-    let headers = {headers : new HttpHeaders({
+    const params = JSON.stringify(follow);
+    const headers = {headers : new HttpHeaders({
       'Content-Type':'application/json',
       'x-access-token':this.token
     })}
-    return this.http.post(this.url+'api/v1/user/follow/create', params, headers)//.map(res=>res.json());
+    return this.http.post(this.url+'api/v1/user/follow/create', params, headers);
   }
 
   /*
   quitar el follos a determinado elemento
   */
-  quitFollow(followid){
-    let params = JSON.stringify(followid);
-    let headers = {headers:new HttpHeaders({
-      'Content-Type':'application/json',
-      'x-access-token':this.token
-    })}
-    return this.http.put(this.url+'api/v1/user/follow/delete', params, headers)//.map(res=>res.json());
+  quitFollow(followid: any) {
+    const params = JSON.stringify(followid);
+    const headers = {headers: new HttpHeaders
+      ({
+      'Content-Type': 'application/json',
+      'x-access-token': this.token
+      })
+    };
+    return this.http.put(this.url + 'api/v1/user/follow/delete', params, headers);
   }
   /*
   metodo para modificar los datos del usuario
   */
-  userModify(person){
-    let params = JSON.stringify(person);
-    let headers = {headers : new HttpHeaders({
-      'Content-Type':'application/json',
-      'x-access-token':this.token
-    })}
-    return this.http.put(this.url+'api/v1/user/modify', params, headers)//.map(res=>res.json());
+  userModify(person: any) {
+    const params = JSON.stringify(person);
+    const headers = {headers : new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-access-token': this.token
+      })
+    };
+    return this.http.put(this.url + 'api/v1/user/modify', params, headers);
   }
 }

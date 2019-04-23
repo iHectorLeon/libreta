@@ -10,20 +10,20 @@ import { UserService } from './../sharedservices/user.service';
 })
 export class LoginComponent implements OnInit {
   emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-  type="password";
-  dataIsOk:boolean = false;
-  loading:boolean=false;
-  messageSuccess:string;
-  messageErrorUser:any;
-  messageErrorAPI:any;
-  messageErroremail:string;
-  login:Login;
-  token:any;
-  identiti:any;
-  show:boolean = false;
+  type = 'password';
+  dataIsOk = false;
+  loading = false;
+  messageSuccess: string;
+  messageErrorUser: any;
+  messageErrorAPI: any;
+  messageErroremail: string;
+  login: Login;
+  token: any;
+  identiti: any;
+  show = false;
 
-  constructor(private userService:UserService, private router:Router) {
-    this.login = new Login('','');
+  constructor(private userService: UserService, private router: Router) {
+    this.login = new Login('', '');
   }
 
   ngOnInit() {
@@ -38,45 +38,45 @@ export class LoginComponent implements OnInit {
     } else {
       this.messageErroremail = 'Debes de proporcionar una dirección de correo'
     }
-    if(this.login.username!='' && this.login.password !='' && this.emailRegex.test(this.login.username)){
+    if (this.login.username !== '' && this.login.password !== '' && this.emailRegex.test(this.login.username)) {
       this.dataIsOk = true;
-    }else{
+    } else {
       this.dataIsOk = false;
     }
   }
 
-  getlogin(){
+  getlogin() {
     this.messageErrorUser = null;
     this.messageErrorAPI = null;
-    this.userService.singUp(this.login).subscribe(data=>{
+    this.userService.singUp(this.login).subscribe(data => {
       this.token = data.token;
-      localStorage.setItem('token',this.token);
-      this.userService.getUser(this.login.username).subscribe(data=>{
-        let identiti = data;
-        localStorage.setItem("identiti",JSON.stringify(identiti));
+      localStorage.setItem('token', this.token);
+      this.userService.getUser(this.login.username).subscribe( resdata => {
+        const identiti = resdata;
+        localStorage.setItem('identiti', JSON.stringify(identiti));
         this.router.navigate(['/consoleuser']);
         this.loading = false;
-      },error=>{
-        this.messageErrorAPI = "Ocurrió un erro interno de sistema, favor de reportarlo a la mesa de ayuda: " + error.status;
+      }, error => {
+        this.messageErrorAPI = 'Ocurrió un erro interno de sistema, favor de reportarlo a la mesa de ayuda: ' + error.status;
         this.loading = false;
       });
-    },error=>{
-      if(error.status>399 && error.status<500){
-        this.messageErrorUser = "Usuario o contraseña invalidos, en caso de que no recuerdes tu contraseña selecciona la opción de Recuperar Contraseña";
-      }else{
-        this.messageErrorAPI = "Ocurrió un error interno de sistema, favor de reportarlo a la mesa de ayuda, estatus:" + error.status;
+    }, error => {
+      if ( error.status > 399 && error.status < 500) {
+// tslint:disable-next-line: max-line-length
+        this.messageErrorUser = 'Usuario o contraseña invalidos, en caso de que no recuerdes tu contraseña selecciona la opción de Recuperar Contraseña';
+      } else {
+        this.messageErrorAPI = 'Ocurrió un error interno de sistema, favor de reportarlo a la mesa de ayuda, estatus:' + error.status;
       }
       this.loading = false;
     });
   }
 
-  showPass(){
-    this.show = !this.show
-    if(this.show){
-      this.type = "text";
-    }else{
-      this.type = "password";
+  showPass() {
+    this.show = !this.show;
+    if (this.show) {
+      this.type = 'text';
+    } else {
+      this.type = 'password';
     }
   }
-
 }
