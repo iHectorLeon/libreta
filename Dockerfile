@@ -26,7 +26,7 @@ RUN chown -R dummy:radiohead /etc/nginx && chmod 750 /etc/nginx
 RUN chown -R dummy:radiohead /run && chmod 750 /run
 WORKDIR /usr/share/nginx/html
 
-COPY dist/ .
+COPY dist/libreta/ .
 
 USER dummy
 
