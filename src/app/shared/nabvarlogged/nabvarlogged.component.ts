@@ -64,7 +64,6 @@ export class NabvarloggedComponent implements OnInit, DoCheck {
   getCourses() {
     this.course.getCourses(this.token).subscribe(data => {
       this.groupsUser = data.message.numgroups;
-      console.log(this.groupsUser);
     });
   }
 
