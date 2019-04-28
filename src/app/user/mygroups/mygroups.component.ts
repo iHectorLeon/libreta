@@ -33,9 +33,11 @@ export class MygroupsComponent implements OnInit {
   getCourseUser() {
     this.course.getCourses(this.token).subscribe(data => {
       const mycursos = data.message.groups;
+      console.log(mycursos);
       this.course.getCoursesOrg().subscribe( res => {
         for (const idcr of res.message.courses) {
           for (const idmg of mycursos) {
+            console.log(idmg);
             if (idcr.id === idmg.courseid ) {
               if (idmg.status === 'active') {
                 this.cursoslist.push({
