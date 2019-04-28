@@ -1,6 +1,7 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { CourseService } from './../../shared/sharedservices/course.service';
 import { environment } from './../../../environments/environment';
+import { log } from 'util';
 import { NotificationClose } from './../models/notificationClose';
 import { Roles } from './../models/roles';
 import { Router } from '@angular/router';
@@ -63,6 +64,7 @@ export class NabvarloggedComponent implements OnInit, DoCheck {
   getCourses() {
     this.course.getCourses(this.token).subscribe(data => {
       this.groupsUser = data.message.numgroups;
+      console.log(this.groupsUser);
     });
   }
 
