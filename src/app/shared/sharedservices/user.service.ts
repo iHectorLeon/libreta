@@ -30,25 +30,25 @@ export class UserService{
   /*
   metodo para obtener la informacion del usuario
   */
-  getUser(username):Observable<any>{
-    return this.http.get(this.url+'api/v1/user/getdetails?name='+username)
+  getUser(username): Observable<any> {
+    return this.http.get(this.url + 'api/v1/user/getdetails?name=' + username);
   }
 
   /*
   metodo para obtener la informacion del usuario cuando inicia por primera ves sesion
   */
-  getUserDetails(username:any):Observable<any>{
-    return this.http.get(this.url+'api/user/getdetails?name='+username)//.map(res=>res.json());
+  getUserDetails(username: any): Observable<any> {
+    return this.http.get(this.url + 'api/user/getdetails?name=' + username);
   }
 
   /*
   metodo para traer los datos del usuario logueado
   */
-  getIdentiti(){
-    let identiti = JSON.parse(localStorage.getItem('identiti'));
-    if(identiti != 'undefined'){
+  getIdentiti() {
+    const identiti = JSON.parse(localStorage.getItem('identiti'));
+    if (identiti !== 'undefined') {
       this.identiti = identiti;
-    }else{
+    } else {
       this.identiti = null;
     }
     return this.identiti;
@@ -57,9 +57,9 @@ export class UserService{
   /*
   metodo para poner el token del usuario logueado donde el api lo requiera
   */
-  getToken(){
-    let token = localStorage.getItem('token');
-    if (token != 'undefined') {
+  getToken() {
+    const token = localStorage.getItem('token');
+    if (token !== 'undefined') {
       this.token = token;
     } else {
       this.token = null;

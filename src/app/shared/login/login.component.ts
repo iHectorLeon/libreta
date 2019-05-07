@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   getlogin() {
+    this.loading = true;
     this.messageErrorUser = null;
     this.messageErrorAPI = null;
     this.userService.singUp(this.login).subscribe(data => {

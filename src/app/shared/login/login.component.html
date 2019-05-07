@@ -22,7 +22,7 @@
         <div class="card-body">
           <h3>Iniciar sesión</h3>
           <form class="was-validated">
-            <label class="form-inline"><b>*Usuario : </b></label>
+            <label class="form-inline"><b>* Usuario : </b></label>
             <input type="text" class="form-control"  #username="ngModel" name="username" [(ngModel)]="login.username" (blur)="getCredentials()" required><!-- (blur)="getCredentials(username.value, password.value)" required-->
             <span *ngIf="messageErroremail" class="text-danger"><b>{{messageErroremail}}</b></span>
             <br>
