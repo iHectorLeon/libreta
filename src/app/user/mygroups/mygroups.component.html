@@ -76,6 +76,36 @@
               </div>
         </ng-template>
       </ngb-panel>
+      <ngb-panel>
+        <ng-template ngbPanelTitle>
+          <span class="text-secondary">
+            <i class="fas fa-graduation-cap"></i> Mis proximos cursos
+          </span>
+        </ng-template>
+        <ng-template ngbPanelContent>
+            <div class="card-deck">
+                <div class="card" *ngFor="let crs of cursosnext | paginate: { itemsPerPage: 4, currentPage: p }">
+                  <img class="card-img-top imagenesCurso img-responsive" [src]="crs.imagen" alt="Card image cap">
+                  <div class="card-title text-center">
+                    <h5><i class="fas fa-users"></i> Grupo: {{crs.curso.name}} <br> <small>CLAVE: {{crs.curso.code}}</small></h5>
+                  </div>
+                  <div class="card-body">
+                    <i class="fas fa-book"></i> Curso: {{crs.curso.course}} <br>
+                    <i class="fas fa-hashtag"></i> Código: {{crs.curso.courseCode}}
+                  </div>
+                  <div class="card-footer">
+                    <div class="alert alert-dark" role="alert">
+                      Fecha de inicio: {{crs.curso.beginDate | date:"dd/MM/yy" }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="text-center text-success">
+                <pagination-controls (pageChange)="p = $event" previousLabel="Atras" nextLabel="Siguiente"></pagination-controls>
+              </div>
+        </ng-template>
+      </ngb-panel>
     </ngb-accordion>
   </div>
 </div>

@@ -19,6 +19,7 @@ import { VideosPipe } from './userservices/videos.pipe';
 import { ViewNotificationsBlocksComponent } from './view-notifications-blocks/view-notifications-blocks.component';
 import { ViewNotificationsComponent } from './view-notifications/view-notifications.component';
 
+
 @NgModule({
   imports: [
     CommonModule,

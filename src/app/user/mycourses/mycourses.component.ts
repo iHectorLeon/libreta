@@ -13,16 +13,10 @@ import { constancias } from './../models/docsconalep';
 import { CourseService } from './../../shared/sharedservices/course.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { Discussion } from './../../models/course/discussion';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Doubt } from './../../models/temp/doubt';
 import { FollowId, Follows } from './../models/follow';
 import { GeneratedocsService } from './generatedocs.service';
-import {
-  ModalDismissReasons,
-  NgbModal,
-  NgbModalRef,
-  NgbModule
-  } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Notification } from './../models/notification';
 import { Objects } from './../models/Objects';
 import { Options } from 'fullcalendar';
@@ -37,8 +31,8 @@ import { UserService } from './../../shared/sharedservices/user.service';
 })
 export class MycoursesComponent implements OnInit, DoCheck {
 
-  public identiti;
-  public token;
+  public identiti: any;
+  public token: any;
 
   calendarOptions: Options;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
@@ -172,7 +166,7 @@ export class MycoursesComponent implements OnInit, DoCheck {
 
     this.cursosService.showBlocksTrack(this.groupid, this.token).subscribe(data => {
       this.block = data.message.blocks;
-      for (const idevent of data.message.groupDates) {
+      for (const idevent of data.message.dates) {
         this.dataevents.push({
           title: idevent.label,
           start: this.datePipe.transform(idevent.beginDate, 'yyyy-MM-dd'),
@@ -193,6 +187,7 @@ export class MycoursesComponent implements OnInit, DoCheck {
         selectable: true,
         events: this.dataevents
       };
+      console.log(this.calendarOptions);
     }, error => {
       console.log(error);
     });

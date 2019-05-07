@@ -421,10 +421,13 @@ export class TaskreviewComponent implements OnInit {
   Metodo de validacion de fechas
   */
   public setevent(label: any, type: any, begindate: any, enddate: any) {
+    this.beginDate = new Date(begindate);
+    this.endDate = new Date(enddate);
     this.messageErrorevent = null;
     this.messageSuccesevent = null;
     if (label !== '' || type !== '' || enddate !== '' || begindate !== '') {
       const tmpupd: any[] = [];
+
       for (const id of this.dataTask) {
         tmpupd.push({
           label: id.title,
@@ -433,17 +436,17 @@ export class TaskreviewComponent implements OnInit {
           type: id.type
         });
       }
+
       tmpupd.push(
         {
           label,
-          beginDate: begindate,
-          endDate: enddate,
+          beginDate: this.beginDate.setDate(this.beginDate.getDate() + 1),
+          endDate: this.endDate.setDate(this.endDate.getDate() + 1),
           type
         }
       );
       const jsonupd = {
         groupid: this.groupid,
-// tslint:disable-next-line: indent
 	      dates: tmpupd
       };
       this.tutorservice.updateEventsTutor(JSON.stringify(jsonupd)).subscribe(data => {

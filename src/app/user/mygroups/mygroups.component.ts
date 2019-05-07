@@ -16,6 +16,7 @@ export class MygroupsComponent implements OnInit {
   token: any;
   cursoslist: any[] = [];
   cursosinactive: any[] = [];
+  cursosnext: any[] = [];
   loading = false;
   messageNewUser = false;
 
@@ -33,11 +34,9 @@ export class MygroupsComponent implements OnInit {
   getCourseUser() {
     this.course.getCourses(this.token).subscribe(data => {
       const mycursos = data.message.groups;
-      console.log(mycursos);
       this.course.getCoursesOrg().subscribe( res => {
         for (const idcr of res.message.courses) {
           for (const idmg of mycursos) {
-            console.log(idmg);
             if (idcr.id === idmg.courseid ) {
               if (idmg.status === 'active') {
                 this.cursoslist.push({
@@ -49,11 +48,17 @@ export class MygroupsComponent implements OnInit {
                   curso: idmg,
                   imagen: idcr.image
                 });
+              } else if (idmg.status === 'coming') {
+                this.cursosnext.push({
+                  curso: idmg,
+                  imagen: idcr.image
+                });
               }
             }
           }
         }
       });
+      console.log(this.cursosnext);
       this.messageNewUser = false;
       this.loading = false;
     }, error => {

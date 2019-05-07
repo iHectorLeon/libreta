@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import { environment } from './../../environments/environment';
-//import 'rxjs/add/operator/map' ;
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+//import 'rxjs/add/operator/map' ;
 
 
 @Injectable()
@@ -87,16 +87,16 @@ export class TutorService {
   */
   quitFollow(followid){
     let params = JSON.stringify(followid);
-    return this.http.put(this.url+'api/v1/user/follow/delete', params);
+    return this.http.put(this.url + 'api/v1/user/follow/delete', params);
   }
 
-  getDetailsGroup(groupid):Observable<any>{
-    return this.http.get(this.url+'api/v1/instructor/group/get?groupid='+groupid);
+  getDetailsGroup(groupid): Observable <any> {
+    return this.http.get(this.url + 'api/v1/instructor/group/get?groupid=' + groupid);
   }
 
-  updateEventsTutor(params):Observable<any>{
+  updateEventsTutor(params): Observable<any> {
     console.log(params);
-    return this.http.put(this.url+'api/v1/instructor/group/modify', params)
+    return this.http.put(this.url + 'api/v1/instructor/group/savedates', params);
   }
 
   /*

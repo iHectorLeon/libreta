@@ -1,14 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { DatePipe } from '@angular/common';
-
-import { CalendarComponent } from 'ng-fullcalendar';
-import { Options } from 'fullcalendar';
-
-import { UserService } from './../../shared/sharedservices/user.service';
-import { CourseService } from './../../shared/sharedservices/course.service';
-import { ScheduleModels } from './../schedulemodels';
-import { EventService } from './../event.service';
 import * as $ from 'jquery';
+import { CalendarComponent } from 'ng-fullcalendar';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CourseService } from './../../shared/sharedservices/course.service';
+import { DatePipe } from '@angular/common';
+import { EventService } from './../event.service';
+import { Options } from 'fullcalendar';
+import { UserService } from './../../shared/sharedservices/user.service';
+
+
 
 @Component({
   selector: 'app-schedule',
@@ -17,13 +16,13 @@ import * as $ from 'jquery';
 })
 export class ScheduleComponent implements OnInit {
 
-  loading:boolean;
+  loading: boolean;
   calendarOptions: Options;
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-  data:any[]=[];
-  colorevents:any[]=['#088A4B','#04B45F','#04B45F','#E6E6E6'];
+  data: any[] = [];
+  colorevents: any[] = ['#088A4B', '#04B45F', '#04B45F', '#E6E6E6'];
 
-  constructor(private userService:UserService, private courseService:CourseService, private datePipe:DatePipe, private eventService:EventService) {
+  constructor(private datePipe: DatePipe, private eventService: EventService) {
 
   }
 
@@ -33,18 +32,18 @@ export class ScheduleComponent implements OnInit {
 
   loadEvents(){
     this.loading = true;
-    this.eventService.getEventSchedule().subscribe(res=>{
-      for(let id of res.message.groups){
+    this.eventService.getEventSchedule().subscribe(res => {
+      for (const id of res.message.groups){
         this.data.push({
-          title: 'curso: '+id.name,
-          start: this.datePipe.transform(id.beginDate,'yyyy-MM-dd'),
-          end:this.datePipe.transform(id.endDate,'yyyy-MM-dd'),
-          color:this.colorevents[Math.floor(Math.random() * this.colorevents.length)]
-        })
+          title: 'curso: ' + id.name,
+          start: this.datePipe.transform(id.beginDate, 'yyyy-MM-dd'),
+          end: this.datePipe.transform(id.endDate, 'yyyy-MM-dd'),
+          color: this.colorevents[Math.floor(Math.random() * this.colorevents.length)]
+        });
       }
-      this.calendarOptions ={
-        locale:'es',
-        height:700,
+      this.calendarOptions = {
+        locale: 'es',
+        height: 700,
         editable: true,
         eventLimit: false,
         header: {
@@ -53,8 +52,8 @@ export class ScheduleComponent implements OnInit {
           right: ''
         },
         selectable: true,
-        events:this.data
-      }
+        events: this.data
+      };
       this.loading = false;
     });
   }
