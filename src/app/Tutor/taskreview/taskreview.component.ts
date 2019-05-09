@@ -443,6 +443,7 @@ export class TaskreviewComponent implements OnInit {
       this.dataActivities.push(eventsupd);
       const jsonupd = {
         groupid: this.groupid,
+// tslint:disable-next-line: indent
 	      dates: this.dataActivities
       };
       this.tutorservice.updateEventsTutor(JSON.stringify(jsonupd)).subscribe(data => {

@@ -214,8 +214,8 @@ export class MycoursesComponent implements OnInit, DoCheck {
   }
 
   public colorevents(type: string): string {
-    let color: string;
-    if ( type === 'activity') {
+    let color: any;
+    if (type === 'task') {
       color = 'red';
     }
     if (type === 'exam') {
@@ -223,6 +223,9 @@ export class MycoursesComponent implements OnInit, DoCheck {
     }
     if (type === 'general') {
       color = 'blue';
+    }
+    if (type === 'certificate') {
+      color = 'yellow';
     }
     return color;
   }
