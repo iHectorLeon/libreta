@@ -169,8 +169,8 @@ export class MycoursesComponent implements OnInit, DoCheck {
       for (const idevent of data.message.dates) {
         this.dataevents.push({
           title: idevent.label,
-          start: this.datePipe.transform(idevent.beginDate, 'yyyy-MM-dd'),
-          end: this.datePipe.transform(idevent.endDate, 'yyyy-MM-dd'),
+          start: this.datePipe.transform(idevent.beginDate, 'yyyy-MM-dd 00:00:01'),
+          end: this.datePipe.transform(idevent.endDate, 'yyyy-MM-dd 23:59:00'),
           color: this.colorevents(idevent.type)
         });
       }

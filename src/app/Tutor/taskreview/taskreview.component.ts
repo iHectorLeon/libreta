@@ -143,11 +143,14 @@ export class TaskreviewComponent implements OnInit {
         this.discussions = rest[1].message;
         this.comments = rest[2].message;
         this.replys = rest[3].message;
+        this.dataActivities = rest[4].message.dates;
         for (const id of rest[4].message.dates) {
+          this.beginDate = new Date(id.beginDate);
+          this.endDate = new Date(id.endDate);
           this.dataTask.push({
             title: id.label,
-            start: this.datePipe.transform(id.beginDate, 'yyyy-MM-dd'),
-            end: this.datePipe.transform(id.endDate, 'yyyy-MM-dd'),
+            start: this.datePipe.transform(this.beginDate, 'yyyy-MM-dd 00:00:01'),
+            end: this.datePipe.transform(this.endDate, 'yyyy-MM-dd 23:59:00'),
             color: this.colorevents(id.type),
             type: id.type
           });
@@ -172,7 +175,7 @@ export class TaskreviewComponent implements OnInit {
 
   public colorevents(type: string): string {
     let color: any;
-    if (type === 'activity') {
+    if (type === 'task') {
       color = 'red';
     }
     if (type === 'exam') {
@@ -180,6 +183,9 @@ export class TaskreviewComponent implements OnInit {
     }
     if (type === 'general') {
       color = 'blue';
+    }
+    if (type === 'certificate') {
+      color = 'yellow';
     }
     return color;
   }
@@ -421,45 +427,33 @@ export class TaskreviewComponent implements OnInit {
   Metodo de validacion de fechas
   */
   public setevent(label: any, type: any, begindate: any, enddate: any) {
-    this.beginDate = new Date(begindate);
-    this.endDate = new Date(enddate);
     this.messageErrorevent = null;
     this.messageSuccesevent = null;
+    this.beginDate = new Date(begindate);
+    this.endDate = new Date(enddate);
+    const begin = this.beginDate.setDate(this.beginDate.getDate() + 1);
+    const end = this.endDate.setDate(this.endDate.getDate() + 1);
     if (label !== '' || type !== '' || enddate !== '' || begindate !== '') {
-      const tmpupd: any[] = [];
-
-      for (const id of this.dataTask) {
-        tmpupd.push({
-          label: id.title,
-          beginDate: id.start,
-          endDate: id.end,
-          type: id.type
-        });
-      }
-
-      tmpupd.push(
-        {
-          label,
-          beginDate: this.beginDate.setDate(this.beginDate.getDate() + 1),
-          endDate: this.endDate.setDate(this.endDate.getDate() + 1),
-          type
-        }
-      );
+      const eventsupd = {
+        beginDate: this.datePipe.transform(begin, 'yyyy-MM-dd 00:00:01'),
+        endDate: this.datePipe.transform(end, 'yyyy-MM-dd 23:59:59'),
+        label,
+        type
+      };
+      this.dataActivities.push(eventsupd);
       const jsonupd = {
         groupid: this.groupid,
-	      dates: tmpupd
+	      dates: this.dataActivities
       };
       this.tutorservice.updateEventsTutor(JSON.stringify(jsonupd)).subscribe(data => {
         this.dataTask.push({
           title: label,
-          start: begindate,
-          end: enddate,
+          start: this.datePipe.transform(begin, 'yyyy-MM-dd 00:00:01'),
+          end: this.datePipe.transform(end, 'yyyy-MM-dd 23:59:59'),
           color: this.colorevents(type),
           type
         });
-        this.messageSuccesevent = 'Se agregó el nuevo evento correctamente';
         this.closeModal();
-        this.getTasks();
       });
       this.messageErrorevent = null;
     } else {

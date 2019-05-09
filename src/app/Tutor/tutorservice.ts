@@ -95,7 +95,6 @@ export class TutorService {
   }
 
   updateEventsTutor(params): Observable<any> {
-    console.log(params);
     return this.http.put(this.url + 'api/v1/instructor/group/savedates', params);
   }
 

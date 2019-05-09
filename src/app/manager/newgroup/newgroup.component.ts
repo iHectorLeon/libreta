@@ -1,13 +1,18 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { DatePipe} from '@angular/common';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { environment } from './../../../environments/environment';
+import { groupEntity, groupEntityTutor, groupModify } from './../manager.models';
 import { ManagerserviceService } from './../managerservice.service';
+import {
+  ModalDismissReasons,
+  NgbModal,
+  NgbModalRef,
+  NgbModule
+  } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from './../../shared/sharedservices/user.service';
 
-import { groupEntity, groupEntityTutor, groupModify } from './../manager.models';
-import { environment } from './../../../environments/environment';
-import { NgbModule, NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-newgroup',
@@ -283,13 +288,12 @@ export class NewgroupComponent implements OnInit{
   /*
   Metodo de validacion de fechas
   */
-  public getDates(begindate){
-    console.log(begindate)
-    if(begindate!=''){
+  public getDates(begindate) {
+    if(begindate !== '') {
       this.beginDate = new Date(begindate);
       this.endDate = new Date(begindate);
-      this.beginDate.setDate(this.beginDate.getDate()+1);
-      this.endDate.setDate(this.beginDate.getDate()+this.defaultDaysDuration);
+      this.beginDate.setDate(this.beginDate.getDate() + 1);
+      this.endDate.setDate(this.beginDate.getDate() + this.defaultDaysDuration);
       this.beginDateLabel = this.datePipe.transform(this.beginDate, 'yyyy-MM-dd');
       this.endDateLabel = this.datePipe.transform(this.endDate, 'yyyy-MM-dd');
       this.dataGroupsOk = true;
@@ -300,7 +304,7 @@ export class NewgroupComponent implements OnInit{
   Metodo para generar la clave del grupo y consultarlo en la base de datos
   */
   public generateCodeGroup(code){
-    if(code.length != 0 && this.orgName!=null && this.numberGroup!=null){
+    if(code.length !== 0 && this.orgName!=null && this.numberGroup!=null){
       this.codeCourse = code;
       this.getNameCourse(this.codeCourse);
       let consecutivo = 1
