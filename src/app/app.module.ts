@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ChartsModule } from 'ng2-charts';
 import { EditorModule } from './editor/editor.module';
 import { environment } from '../environments/environment';
-import { ErrorComponent } from './error/error.component';
+import { ErrorModule } from './error/error.module';
 import { ErrorService } from './error/error.service';
 import { FooterComponent } from './shared/footer/footer.component';
 import { FormsModule } from '@angular/forms';
@@ -34,7 +34,6 @@ import { UserModule } from './user/user.module';
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent,
     NabvarComponent,
     NabvarloggedComponent,
     FooterComponent
@@ -50,6 +49,7 @@ import { UserModule } from './user/user.module';
     AdminconsoleModule,
     ReportsModule,
     EditorModule,
+    ErrorModule,
     TutorModule,
     SearchModule,
     FormsModule,

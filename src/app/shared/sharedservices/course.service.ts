@@ -162,7 +162,7 @@ export class CourseService {
       'Content-Type':'application/json',
       'x-access-token':this.token
     });
-    return this.http.post(this.url+"api/v1/user/comment/create",params,{headers:headers});
+    return this.http.post(this.url + "api/v1/user/comment/create", params, {headers: headers});
   }
 
   /*
@@ -172,7 +172,7 @@ export class CourseService {
     let headers = new HttpHeaders({
       'x-access-token':token
     });
-    return this.http.get(this.url+'api/v1/user/mygrades?groupid='+groupid,{headers:headers})//.map(res=>res.json());
+    return this.http.get(this.url + 'api/v1/user/mygrades?groupid=' + groupid , {headers: headers});
   }
 
   /*

@@ -94,8 +94,12 @@ export class TutorService {
     return this.http.get(this.url + 'api/v1/instructor/group/get?groupid=' + groupid);
   }
 
-  updateEventsTutor(params): Observable<any> {
+  updateEventsTutor( params: any): Observable<any> {
     return this.http.put(this.url + 'api/v1/instructor/group/savedates', params);
+  }
+
+  approvalconst( roster: any) {
+    return this.http.put(this.url + 'api/v1/instructor/group/releasecert', roster);
   }
 
   /*

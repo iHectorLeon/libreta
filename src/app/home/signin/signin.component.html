@@ -22,8 +22,8 @@
         </wizard-step>
 
         <wizard-step>
-          <div *ngIf="messa_err_org" class="alert alert-warning" role="alert">
-            <i class="fas fa-exclamation-triangle"></i> {{messa_err_org}}
+          <div *ngIf="messaerrorg" class="alert alert-warning" role="alert">
+            <i class="fas fa-exclamation-triangle"></i> {{messaerrorg}}
           </div>
           <form class="was-validated">
             <select  #type (change)="typeU(type.value)" class="form-control" required>
@@ -114,7 +114,7 @@
           <div *ngIf="!uservalite" class="alert alert-success" role="alert">
             <i class="fas fa-exclamation-triangle"></i> Debes de proporcionar una direccion de correo electronica valida
           </div>
-          <ngb-alert *ngIf="messa_suc" type="success" (close)="datosOk = true">{{messa_suc}}</ngb-alert>
+          <ngb-alert *ngIf="messasuc" type="success" (close)="datosOk = true">{{messa_suc}}</ngb-alert>
           <ngb-alert *ngIf="!datosOk" type="danger" (close)="datosOk = true">{{messa_err}}</ngb-alert>
           <p>
             <label for="email">*Correo electrónico</label>

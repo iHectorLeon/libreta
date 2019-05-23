@@ -67,6 +67,11 @@ export class TaskreviewComponent implements OnInit {
   titleDoubt: any;
   blockcomment: any;
 
+  rosteridl: any;
+  namel: string;
+  fatherNamel: string;
+  motherNamel: string;
+  messagecertificate: any;
 
   public listRooster: any;
   public idrooster: any;
@@ -92,8 +97,9 @@ export class TaskreviewComponent implements OnInit {
   comments: any[];
   replys: any[];
 
-  public messageSuccess: any;
-  public messageError: any;
+  public messageSuccess: any = '';
+  public messageSuccessConst: any = '';
+  public messageError: any = '';
 
   groupCode: string;
 
@@ -122,6 +128,7 @@ export class TaskreviewComponent implements OnInit {
     this.labelGradesList = [];
     this.tutorservice.getlistroster(this.groupCode).subscribe(data => {
       this.listRooster = data.message;
+      console.log(this.listRooster);
       this.courseid = data.message.courseid;
       this.groupid = data.message.groupid;
       for (const item of data.message.students) {
@@ -205,6 +212,20 @@ export class TaskreviewComponent implements OnInit {
     this.tasksStudent = [];
     this.tasksStudent = tasks;
     this.studentid = studentid;
+    this.showModal(content);
+  }
+
+  /**
+   *
+   * Metodo para liberar la constancia por alumno
+   */
+  viewMessageCertificated(rosterid: any, name: string, fatherName: string, motherName: string, content: any) {
+    this.rosteridl = rosterid;
+    this.namel = name;
+    this.fatherNamel = fatherName;
+    this.motherNamel = motherName;
+// tslint:disable-next-line: max-line-length
+    this.messagecertificate = 'Se activara la constancia para el participante: ' + this.namel + ' ' + this.fatherNamel + ' ' + this.motherNamel;
     this.showModal(content);
   }
 
@@ -460,5 +481,18 @@ export class TaskreviewComponent implements OnInit {
     } else {
       this.messageErrorevent = 'Todos los campos son obligatorios';
     }
+  }
+
+  approvedConst() {
+// tslint:disable-next-line: prefer-const
+    let temproster: any = [];
+    temproster.push(this.rosteridl);
+    const rosteraproval = {
+      rosters: temproster
+    };
+    this.tutorservice.approvalconst(rosteraproval).subscribe(data => {
+      this.messageSuccessConst = 'Se liberó la constancia de ' + this.namel + ' ' + this.fatherNamel + ' ' + this.motherNamel + '  exitosamente.';
+      this.closeModal();
+    });
   }
 }

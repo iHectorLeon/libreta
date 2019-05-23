@@ -187,7 +187,6 @@ export class MycoursesComponent implements OnInit, DoCheck {
         selectable: true,
         events: this.dataevents
       };
-      console.log(this.calendarOptions);
     }, error => {
       console.log(error);
     });
@@ -278,6 +277,7 @@ export class MycoursesComponent implements OnInit, DoCheck {
     this.loading = true;
     const today = new Date();
     this.cursosService.getMyGrades(this.groupid, this.token).subscribe(data => {
+      console.log(data);
       const res = data.message;
       this.data = data.message;
       this.finalGrade = res.finalGrade;

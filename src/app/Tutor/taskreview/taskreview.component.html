@@ -37,6 +37,12 @@
     </div>
   </div>
   <hr>
+  <div *ngIf="messageSuccessConst != ''" class="alert alert-success" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <i class="fas fa-info-circle"></i> {{messageSuccessConst}}
+  </div>
   <ngb-tabset>
     <ngb-tab>
       <ng-template ngbTabTitle><div class="text-success"><i class="far fa-list-alt"></i> Lista de alumnos</div></ng-template>
@@ -49,6 +55,7 @@
             <th>Avance del curso</th>
             <th>Historial de calificaciones</th>
             <th>Calificación actual</th>
+            <th>Liberar constancia</th>
             <th>Estatus</th>
             <th>Tareas</th>
           </tr>
@@ -68,6 +75,11 @@
               </button>
             </td>
             <td>{{itemStudent.finalGrade | number:'.0-2'}}</td>
+            <td>
+              <button [ngClass]="{'btn-success': itemStudent.status == 'active', 'btn-light': itemStudent.status == 'pending'}" class="btn" (click)="viewMessageCertificated(itemStudent.rosterid, itemStudent.userName, itemStudent.userFatherName, itemStudent.userMotherName, confirmconst)" [disabled]="itemStudent.status != 'pending'">
+                Liberar constancia
+              </button>
+            </td>
             <td>
               <h6 *ngIf="itemStudent.pass">Aprobado</h6>
               <h6 *ngIf="!itemStudent.pass">No Aprobado</h6>
@@ -334,6 +346,39 @@
     </p>
     <button type="button" name="button" class="btn btn-success" (click)="setReply(descr.value)"><i class="far fa-comment"></i> Responder</button>
   </div>
+</ng-template>
+
+<ng-template #confirmconst let-c="close" let-d="dismiss" class="animated fast fadeIn modal-side modal-">
+  <div class="modal-header">
+    <h4 class="modal-title"><i class="fas fa-info-circle"></i> Atención</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <i class="fas fa-info-circle"></i> {{messagecertificate}}
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-4">
+        <button type="button" class="btn btn-success blockquote" (click)="approvedConst()">
+          <i class="fas fa-check"></i> Aceptar
+        </button>
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-success blockquote" (click)="closeModal()">
+          <i class="fas fa-times"></i> Cancelar
+        </button>
+      </div>
+      <div class="col-4">
+
+      </div>
+    </div>
+  </div>
+  <!--div class="modal-footer"-->
+
+  <!--/div-->
 </ng-template>
 
 <ng-template #newevent let-c="close" let-d="dismiss" class="animated fast fadeIn">
