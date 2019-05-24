@@ -174,6 +174,8 @@ export class MycoursesComponent implements OnInit, DoCheck {
           color: this.colorevents(idevent.type)
         });
       }
+      console.log(this.dataevents);
+
       this.calendarOptions = {
         locale: 'es',
         height: 500,

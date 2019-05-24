@@ -140,17 +140,26 @@
 
               <div *ngIf="data.certificateActive">
 
-                <div *ngIf="!data.pass || data.status=='pending'">
-                  <button type="button" class="btn btn-success blockquote" style="margin-top:15px;" disabled>
-                    <i class="fas fa-certificate"></i> Imprimir constancia
-                  </button>
+                <div *ngIf="data.groupType == 'tutor'">
+                  <div *ngIf="!data.pass || data.status=='pending' || !certificateTutor">
+                    <button type="button" class="btn btn-success blockquote" style="margin-top:15px;" disabled>
+                      <i class="fas fa-certificate"></i> Imprimir constancia
+                    </button>
+                  </div>
                 </div>
-                <span *ngIf="data.status=='pending'" class="text-success font-italic"><i class="fas fa-exclamation-circle"></i> Pago pendiente</span>
+                <div *ngIf="data.groupType != 'tutor'">
+                  <div *ngIf="!data.pass || data.status=='pending'">
+                    <button type="button" class="btn btn-success blockquote" style="margin-top:15px;" disabled>
+                      <i class="fas fa-certificate"></i> Imprimir constancia
+                    </button>
+                  </div>
 
-                <div *ngIf="data.pass && data.certificateNumber != null && data.status!='pending'">
-                  <a href='https://goo.gl/forms/ysPqeLpN4yIJPmeZ2' target="_blank" type="button" class="btn btn-success blockquote" style="margin-top:15px;" (click)="shownewDoubt(infoconst)"><i class="fas fa-certificate"></i> Imprimir constancia</a>
+                  <span *ngIf="data.status=='pending'" class="text-success font-italic"><i class="fas fa-exclamation-circle"></i> Pago pendiente</span>
+
+                  <div *ngIf="data.pass && data.certificateNumber != null && data.status!='pending'">
+                    <a href='https://goo.gl/forms/ysPqeLpN4yIJPmeZ2' target="_blank" type="button" class="btn btn-success blockquote" style="margin-top:15px;" (click)="shownewDoubt(infoconst)"><i class="fas fa-certificate"></i> Imprimir constancia</a>
+                  </div>
                 </div>
-
               </div>
 
               <button *ngIf="endCourse" type="button" class="btn btn-outline-success blockquote" style="margin-top:15px;" (click)="getLesson()">
